@@ -1,0 +1,17 @@
+p{
+    margin: 0 !important;
+}
+.card{
+    margin-top: 1rem;
+    cursor: pointer;
+}
+.card:hover{
+    border:1px solid #ccc;    
+}
+.row.g-0 > div:nth-child(1){
+    background: #ccc !important;
+}
+.btn-success{
+    color: white !important;
+}
+

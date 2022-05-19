@@ -1,0 +1,47 @@
+<div class=" row justify-content-md-center bg-white">
+    <div class=" col col-lg-10 col-md-12 col-sm-12">
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand">
+                <img src="https://www.waykitrek.net/wp-content/themes/wayki/assets/img/logo.png" alt="" class="d-inline-block align-top logo">
+            </a>
+            <!--solo corporativo 
+            <ul class="nav justify-content-center">
+                <li class="nav-item" *ngIf="datosUsuario.corporateClientId!=null">Create Reserve: </li>
+                <li class="nav-item" *ngIf="datosUsuario.corporateClientId!=null">
+                    <select class="form-select1 select_principal" size="1" (change)="changeChangeRelatedTour($event.target.value);" name="relatedTour" id="relatedTour" ng-focus="jsonTour">
+                        <option selected value="0">seleccione...</option>
+                        <option value="{{relatedTour.code}}" *ngFor="let relatedTour of listTour">{{ relatedTour.name }}</option>
+                    </select>
+                </li>
+            </ul>
+            fin solo corporativo -->
+            <ul class="nav justify-content-end">
+                <!--solo corporativo -->
+                <li class="nav-item color-main" *ngIf="datosUsuario.corporateClientId!=null">
+                    <i class="fas fa-id-card"></i> {{page_bookings[language_page].namecompany}}: {{datosUsuario.corporateClientName}}
+                </li>
+                <li class="nav-item" *ngIf="datosUsuario.corporateClientId!=null">
+                    |
+                </li>
+                <!--fin solo corporativo -->
+                <li class="nav-item color-main">
+                    <i class="fas fa-user"></i> {{datosUsuario.name}} {{datosUsuario.lastName}}
+                </li>
+                <li class="nav-item">
+                    |
+                </li>
+                <li class="nav-item">
+                    <a (click)="cerrar()" class="nav-link">
+                        <i class="fas fa-sign-out-alt"></i> {{page_bookings[language_page].cerrar_sesion}}
+                    </a>
+                </li>
+                <!-- <li class="nav-item">
+            <div class="btn-group btn-group-lang">
+              <a class="btn" (click)="selecionarIdioma('en')" [ngClass]="{'btn-outline-green':language_page === 0}">EN</a>
+              <a class="btn" (click)="selecionarIdioma('es')" [ngClass]="{'btn-outline-green':language_page === 1}">ES</a>
+            </div>
+          </li> -->
+            </ul>
+        </nav>
+    </div>
+</div>

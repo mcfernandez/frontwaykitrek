@@ -1,0 +1,13 @@
+<div class="row">
+      <div class="col-3 pb-1" *ngFor="let t of tours">
+        <div class="card" style="width: 18rem;">
+          <a href="/#/booking/{{t}}/es">
+          <img src="assets/tours.svg" class="card-img-top">
+          </a>
+          <div class="card-body">
+            <p class="card-text text-center font-weight-900">{{t}}
+            </p>
+          </div>
+        </div>
+      </div>
+</div>

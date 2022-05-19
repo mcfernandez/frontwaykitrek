@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="row">
+            <div class="col-lg-12 p-0">
+                <h3 class="card-title text-success font-weight-900">{{page[language_page].titulo}}</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 segundario">
+                <section>
+                    <div class="row" *ngIf="reservas == 0">
+                        <div class="col-8 text-center m-auto">
+                            <img class="pt-5 mb-3" width="100" src="https://www.waykitrek.net/wp-content/themes/wayki/assets/img/logo.png" alt="...">
+                            <h5 class="card-title text-center font-weight-900 color-main pt-1 ml-4">{{page[language_page].textwelcolme}}</h5>                            
+                            <a href="/#/main/tours" class="btn btn-success"><i class="fa fa-th-list" aria-hidden="true"></i> {{page[language_page].button}}</a>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="reservas > 0">
+                        <div class="col-12 " (click)="detalles(booking.id)" *ngFor="let booking of booking_list;">
+                            <div class="card mb-4">
+                                <div class="row g-0">
+                                    <div class="col-md-3">
+                                        <img class="pt-5" src="assets/travel.svg" alt="...">
+                                    </div>
+                                    <div class="col-md-9 pt-3 pb-3">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h5 class="card-title font-weight-900 color-main pt-1 ml-4"><strong>Bookings Code: </strong>{{booking.name}}</h5>
+                                                <p class="card-text"><strong class="ml-4">Tour Name: </strong>{{booking.tourName}}</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-7">
+                                                        <div class="card-body pt-0 pb-0">
+                                                            <p class="card-text"><strong>{{page[language_page].labelFechaViaje}}:
+                                    </strong>{{booking.travelDate}}</p>
+                                                        </div>
+                                                        <div class="card-body pt-0 pb-0">
+                                                            <p class="card-text"><strong>{{page[language_page].labelFechaModificacion}}:
+                                    </strong>{{booking.bookingDate}}
+                                                            </p>
+                                                        </div>
+                                                        <div class="card-body pt-0 pb-0">
+                                                            <p class="card-text"><strong>{{page[language_page].labelTipo}}:
+                                    </strong>{{booking.type}}
+                                                            </p>
+                                                        </div>
+                                                        <div class="card-body pt-0 pb-0">
+                                                            <p class="card-text"><strong>{{getCategory(booking.idcategory)}}: </strong> {{booking.category}}
+                                                            </p>
+                                                        </div>
+                                                        <div class="card-body pt-0 pb-0">
+                                                            <p class="card-text"><strong>{{page[language_page].labelPasajeros}}:
+                                    </strong>{{booking.passangers}}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="card-body pt-0 pb-0">
+                                                            <p class="card-text"><strong>{{page[language_page].labelTotal}}:
+                                    </strong>{{booking.total | currency: 'USD' | lowercase}}</p>
+                                                            <p class="card-text"><strong>Paid </strong>{{booking.paid| currency: 'USD' | lowercase}}
+                                                            </p>
+
+                                                            <p class="card-text"><strong>{{page[language_page].labelPendiente}}:
+                                    </strong>{{booking.pending | currency: 'USD' | lowercase}}</p>
+                                                            <p style="color: green; text-decoration:underline">View details</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

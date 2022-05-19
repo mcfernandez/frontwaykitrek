@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="row">
+      <div class="col-lg-12 p-0">
+            <h3 class="card-title text-success font-weight-900">{{page_tours[language_page].titulo}}</h3>            
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 segundario pt-5 pb-5">  
+        <p>{{page_tours[language_page].subtitulo}}</p>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="incatrail-tab" data-bs-toggle="tab" data-bs-target="#incatrail" type="button" role="tab" aria-controls="incatrail" aria-selected="true">Inka Trail</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="alternativetrek-tab" data-bs-toggle="tab" data-bs-target="#alternativetrek" type="button" role="tab" aria-controls="alternativetrek" aria-selected="false">Alternative Trek</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="packages-tab" data-bs-toggle="tab" data-bs-target="#packages" type="button" role="tab" aria-controls="packages" aria-selected="false">Packages</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="mpichu-tab" data-bs-toggle="tab" data-bs-target="#mpichu" type="button" role="tab" aria-controls="mpichu" aria-selected="false">Machupicchu Trail / Machupicchu Tour</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          
+          <div class="tab-pane fade show active" id="incatrail" role="tabpanel" aria-labelledby="incatrail-tab">
+            
+            <div class="row">
+              <div class="col-6 pb-4" *ngFor="let t of cIncaTrail">            
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="card-title" style="text-transform:none;"><strong>{{page_tours[language_page].name}}:</strong> {{t.name}}</h6>
+                    <p><strong>{{page_tours[language_page].type}}:</strong> {{t.typename}}<br>
+                    <strong>{{page_tours[language_page].category}}:</strong> {{t.categoryname}}</p>                
+                    <a href="/#/corporative/{{t.code}}" class="btn bg-main"  *ngIf="datosUsuario.corporateClientId!=null">Reserve</a>
+                    <a href="/#/booking/{{t.code}}" class="btn bg-main"  *ngIf="datosUsuario.corporateClientId==null">Reserve</a>
+                  </div>
+                </div>        
+              </div>
+            </div>
+            
+          </div>
+          <div class="tab-pane fade" id="alternativetrek" role="tabpanel" aria-labelledby="alternativetrek-tab">
+            <div class="row">
+              <div class="col-6 pb-4" *ngFor="let t of cATrek">            
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="card-title" style="text-transform:none;"><strong>{{page_tours[language_page].name}}:</strong> {{t.name}}</h6>
+                    <p><strong>{{page_tours[language_page].type}}:</strong> {{t.typename}}<br>
+                    <strong>{{page_tours[language_page].category}}:</strong> {{t.categoryname}}</p>                
+                    <a href="/#/corporative/{{t.code}}" class="btn bg-main"  *ngIf="datosUsuario.corporateClientId!=null">Reserve</a>
+                    <a href="/#/booking/{{t.code}}" class="btn bg-main"  *ngIf="datosUsuario.corporateClientId==null">Reserve</a>
+                  </div>
+                </div>        
+              </div>
+            </div>
+
+          </div>
+          <div class="tab-pane fade" id="packages" role="tabpanel" aria-labelledby="packages-tab">
+            <div class="row">
+              <div class="col-6 pb-4" *ngFor="let t of cPackages">            
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="card-title" style="text-transform:none;"><strong>{{page_tours[language_page].name}}:</strong> {{t.name}}</h6>
+                    <p><strong>{{page_tours[language_page].type}}:</strong> {{t.typename}}<br>
+                    <strong>{{page_tours[language_page].category}}:</strong> {{t.categoryname}}</p>                
+                    <a href="/#/corporative/{{t.code}}" class="btn bg-main"  *ngIf="datosUsuario.corporateClientId!=null">Reserve</a>
+                    <a href="/#/booking/{{t.code}}" class="btn bg-main"  *ngIf="datosUsuario.corporateClientId==null">Reserve</a>
+                  </div>
+                </div>        
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="mpichu" role="tabpanel" aria-labelledby="mpichu-tab">
+            <div class="row">
+              <div class="col-6 pb-4" *ngFor="let t of cMPichu">            
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="card-title" style="text-transform:none;"><strong>{{page_tours[language_page].name}}:</strong> {{t.name}}</h6>
+                    <p><strong>{{page_tours[language_page].type}}:</strong> {{t.typename}}<br>
+                    <strong>{{page_tours[language_page].category}}:</strong> {{t.categoryname}}</p>                
+                    <a href="/#/corporative/{{t.code}}" class="btn bg-main"  *ngIf="datosUsuario.corporateClientId!=null">Reserve</a>
+                    <a href="/#/booking/{{t.code}}" class="btn bg-main"  *ngIf="datosUsuario.corporateClientId==null">Reserve</a>
+                  </div>
+                </div>        
+              </div>
+            </div>
+          </div>
+        </div>        
+
+
+
+        
+      </div>
+    </div>
+  </div>
+</div>

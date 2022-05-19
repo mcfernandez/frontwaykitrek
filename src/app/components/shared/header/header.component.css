@@ -1,0 +1,28 @@
+.select_principal {
+    background: #ececec !important;
+    border: none !important;
+    outline: none!important;
+    text-transform: capitalize !important;
+    margin-top: -6px;
+  }
+  .select_principal option{
+    background: #ececec;
+    outline: none!important;
+    text-transform: lowercase !important;
+  }
+  .form-select1 {
+    display: block;
+    width: 100%;
+    padding: 0px 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #111;
+    background-color: #eee;
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 16px 12px;
+    border: none;
+    border-radius: 6px;
+    height: 31px; 
+  }

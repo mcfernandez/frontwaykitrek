@@ -1,0 +1,145 @@
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-12 p-0">
+            <h3 class="card-title text-success font-weight-900">
+              {{page_bookings[language_page].titulo}} <small class="color-subtitulo">/
+                {{page_bookings[language_page].subtitulo}}</small>
+            </h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 segundario pt-5 pb-5">
+            <section>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="alert alert-dark bg-gris-claro" role="alert">
+                    <h4>{{datosUsuario.name}} {{datosUsuario.lastName}}</h4>
+                    {{datosUsuario.email}}
+                  </div>
+
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="row">
+                <div class="col-lg-12">
+                  <a href="javascript:;" (click)="mostrar_datos=false;actualizar_datos=true;" class="titulo float-right"><i class="fas fa-edit"></i></a>
+                  <p class="titulo">
+                    {{page_bookings[language_page].label_titulo1}} <i class="fas fa-user"></i>
+                  </p>
+                  <hr>
+                </div>
+              </div>
+
+              
+              <div class="row showinfo" *ngIf="mostrar_datos==true;">
+                <div class="col-lg-6 pb-3">
+                  <label for="names">Names</label>
+                  <input type="text" class="input-group" name="names" id="names" disabled [(ngModel)]="datosUsuario.name" >
+                </div>
+                <div class="col-lg-6 pb-3">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" class="input-group" name="lastName" id="lastName"  disabled [(ngModel)]="datosUsuario.lastName" >
+                </div>
+                <div class="col-lg-6 pb-3">
+                  <label for="telephone">Telephone</label>
+                  <input type="text" class="input-group" name="telephone" id="telephone" disabled [(ngModel)]="datosUsuario.telephone" >
+                </div>
+              </div>
+
+              <div class="row" *ngIf="actualizar_datos==true;">
+                <div class="col-lg-6 pb-3">
+                  <label for="names">Names</label>
+                  <input type="text" class="input-group" name="names" id="names"  [(ngModel)]="datosUsuario.name" >
+                </div>
+                <div class="col-lg-6 pb-3">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" class="input-group" name="lastName" id="lastName"  [(ngModel)]="datosUsuario.lastName" >
+                </div>
+                <div class="col-lg-6 pb-3">
+                  <label for="telephone">Telephone</label>
+                  <input type="text" class="input-group" name="telephone" id="telephone" [(ngModel)]="datosUsuario.telephone" >
+                </div>
+              </div>
+
+              <div class="row" *ngIf="actualizar_datos==true;">
+                <div class="col-lg-12 text-star">
+                  <button class="btn bg-main text-white " *ngIf="actualizar_datos==true"
+                (click)="actualizar()">{{page_bookings[language_page].label_guardar}}</button>
+                <button class="btn text-white bg-main ml-3"
+                (click)="mostrar_datos=true;actualizar_datos=false;">
+                {{page_bookings[language_page].label_atras}}</button>
+                </div>
+              </div>              
+
+            </section>
+
+            <section>
+              <div class="row">
+                <div class="col-lg-12">
+                  <a href="javascript:;" (click)="mostrar_password=false;actualizar_password=true;" class="titulo float-right"><i class="fas fa-edit"></i></a>
+                  <p class="titulo">
+                    {{page_bookings[language_page].label_titulo2}} <i class="fas fa-lock"></i>
+                  </p>
+                </div>
+              </div>
+              <hr>
+
+              <div class="row showinfo" *ngIf="mostrar_password==true">
+                <div class="col-lg-12">
+                  <div class="row">
+                    <div class="col-lg-6 pb-3">
+                      <label for="password1">Current Password</label>
+                      <input type="password" class="input-group" name="password1" id="password1"  value="*****">   
+                    </div>
+                  </div>
+                </div>                
+              </div>
+
+              <div class="row" *ngIf="actualizar_password==true;">
+                <div class="col-lg-12">
+                  <div class="row">
+                    <div class="col-lg-6 pb-3">
+                      <label for="password1">Current Password</label>
+                      <input type="password" class="input-group" name="password1" id="password1" minlength="2" [(ngModel)]="datosUsuario.password1" >   
+                    </div>
+                    <div class="clear"></div>
+                    <div class="col-lg-6 pb-3 ">
+                      <label for="password2">Enter Your New password</label>
+                      <input type="password" class="input-group" name="password2" id="password2"  minlength="2" [(ngModel)]="datosUsuario.password2" >    
+                    </div>
+                    <div class="col-lg-6 pb-3 ">
+                      <label for="password3">Repeat New Password</label>
+                      <input type="password" class="input-group" name="password3" id="password3"  minlength="2" [(ngModel)]="datosUsuario.password3" >    
+                    </div>
+                  </div>
+                </div>                
+              </div>
+
+
+              <div class="row" *ngIf="actualizar_password==true;">
+                <div class="col-lg-12 text-star">
+                  <button class="btn bg-main text-white " *ngIf="actualizar_password==true"
+                (click)="password()">{{page_bookings[language_page].label_guardar}}</button>
+                <button class="btn text-white bg-main ml-3"
+                (click)="mostrar_password=true;actualizar_password=false;">
+                {{page_bookings[language_page].label_atras}}</button>
+                </div>
+              </div>
+
+            </section>
+
+
+
+
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>

@@ -1,0 +1,213 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="row">
+      <div class="col-lg-12 p-0">
+            <h3 class="card-title text-success font-weight-900">{{page[language_page].titulo}}</h3>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-12 segundario pt-5 pb-5">
+        <section>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="alert alert-dark bg-gris-claro" role="alert">
+                <h4>{{datosUsuario.name}} {{datosUsuario.lastName}}</h4>
+                {{datosUsuario.email}}
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <section *ngIf="mostrar_formulario==false;">
+          <div class="row">
+            <div class="col-lg-9">
+              <p class="titulo h5 pb-4">
+                {{page[language_page].label_lista}} <i class="fas fa-list-ol"></i>
+              </p>
+            </div>
+            <div class="col-lg-3 text-end m-0 pt-4">
+              <button class="btn primary btn-success"
+                (click)="mostrar_formulario=true;actualizar=false;limpiar();"><i class="fa fa-plus"
+                  aria-hidden="true"></i>
+                {{page[language_page].label_nuevo}}</button>
+            </div>
+          </div>
+          <hr>
+          <!-- tabla listado -->
+          <div class="row" *ngIf="Incident_list">
+            <div class="col-lg-12">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>
+                        {{page[language_page].label_fecha}}
+                      </th>
+                      <th>
+                        {{page[language_page].titulo2}}
+                      </th>
+                      <th>
+                        {{page[language_page].label_descripcion}}
+                      </th>
+                      <th>
+                        {{page[language_page].label_estado}}
+                      </th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let inc of Incident_list; let indexinc=index">
+                      <td>
+                        {{inc.modifiedOn}}
+                      </td>
+                      <td>
+                        {{inc.typeId=='7a9f172a-58f4-4cb4-9c2d-a5b2b07ce10c'?inc.name:inc.type}}
+                      </td>
+                      <td>
+                        {{inc.bookingName}}
+                      </td>
+                      <td>
+                        <span class="badge"
+                          [ngClass]="color_status(inc.statusId)">{{name_status(inc.statusId)}}</span>
+                      </td>
+                      <td class="text-warning cursor" (click)="editar(inc)">
+                        <i class="fas fa-eye" style="color: green;"></i>
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section *ngIf="mostrar_formulario==true;">
+          <div class="row pb-3 pl-4 pr-1">
+            <div class="col-lg-12">
+              <p class="titulo h5 pb-2">
+                {{page[language_page].label_titulo}} <i class="far fa-clipboard"></i>
+              </p>
+              <hr>
+            </div>
+          </div>
+
+
+          <div class="row pb-3 pl-4 pr-4" *ngIf="booking_incidencias">
+            <div class="col-lg-3  m-auto">
+              <p>Tour</p>
+            </div>
+            <div class="col-lg-9 p-0">
+              <div class="row">
+                <div class="col">
+                  <select class="form-select1" size="1" name="booking_incidencias" id="booking_incidencias"
+                    [(ngModel)]="booking_incidencias" disabled>
+                    <option selected value="0" disabled>{{page[language_page].seleccionar}}</option>
+                    <option value="{{types.id}}" *ngFor="let types of booking_list;">
+                      {{types.name}}</option>
+                  </select>
+                  <!-- <input type="text" name="booking_incidencias" class="col-12" id="booking_incidencias" [(ngModel)]="booking_incidencias"
+                    autocomplete="off" placeholder="Tours" disabled>  -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- formulario detalle -->
+          <div class="row pb-3 pl-4 pr-4">
+            <div class="col-lg-3  m-auto">
+              <p>{{page[language_page].titulo2}}</p>
+            </div>
+            <div class="col-lg-9 p-0">
+              <div class="row">
+                <div class="col">
+                  <select class="form-select1" size="1" name="type_incidencia" id="type_incidencia"
+                    [(ngModel)]="type_incidencia" [disabled]="actualizar==true">
+                    <option selected value="0" disabled>{{page[language_page].seleccionar}}</option>
+                    <option value="{{types.value}}" *ngFor="let types of Tyes_list;">
+                      {{types.label}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pb-3 pl-4 pr-4" *ngIf="type_incidencia=='7a9f172a-58f4-4cb4-9c2d-a5b2b07ce10c'">
+            <div class="col-lg-3 m-auto">
+              <p>{{page[language_page].label_nombre}}</p>
+            </div>
+            <div class="col-lg-9 p-0">
+              <div class="row">
+                <div class="col">
+                  <input type="text" name="name_incidencia" class="col-12" id="name_incidencia"
+                    [(ngModel)]="name_incidencia" autocomplete="off"
+                    placeholder=" {{page[language_page].label_nombre}}" [disabled]="actualizar==true">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pb-3 pl-4 pr-4" *ngIf="actualizar==true">
+            <div class="col-lg-3  m-auto">
+              <p>Status</p>
+            </div>
+            <div class="col-lg-9 p-0">
+              <div class="row">
+                <div class="col">
+                  <select class="form-select1" size="1" name="status_incidencia" id="status_incidencia"
+                    [(ngModel)]="status_incidencia" [disabled]="actualizar==true">
+                    <option selected value="0" disabled>{{page[language_page].seleccionar}}</option>
+                    <option value="{{types.value}}" *ngFor="let types of status_list;">
+                      {{types.label}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pb-3 pl-4 pr-4">
+            <div class="col-lg-3  mt-2">
+              <p>{{page[language_page].label_mensaje}}</p>
+            </div>
+            <div class="col-lg-9 p-0">
+              <textarea name="mensaje" id="mensaje" [disabled]="actualizar==true" cols="15" rows="5"
+                style="width: 100%;" [(ngModel)]="mensaje" placeholder="Please write your request"></textarea>
+            </div>
+          </div>
+
+          <div class="row pb-3 pl-4 pr-4" *ngIf="mostrar_detalle">
+            <div class="col-lg-3  mt-2">
+              <p>{{page[language_page].label_observation}}</p>
+            </div>
+            <div class="col-lg-9 p-0">
+              <textarea name="observation" id="observation" [disabled]="actualizar==true" cols="15" rows="5"
+                style="width: 100%;" [(ngModel)]="observation" placeholder=""></textarea>
+            </div>
+          </div>
+          <div class="row pb-3 pl-4 pr-4" *ngIf="mostrar_detalle">
+            <div class="col-lg-3  mt-2">
+              <p>{{page[language_page].label_response}}</p>
+            </div>
+            <div class="col-lg-9 p-0">
+              <textarea name="response" id="response" [disabled]="actualizar==true" cols="15" rows="5"
+                style="width: 100%;" [(ngModel)]="response" placeholder=""></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+
+            <div class="col-lg-12 text-end">
+              <button class="btn bg-main text-white" *ngIf="actualizar==false"
+                (click)="save()">{{page[language_page].label_guardar}}</button>
+              <button class="btn text-white bg-main ml-3"
+                (click)="mostrar_formulario=false;actualizar=false;limpiar();  searchIncidendecias()">
+                {{page[language_page].label_atras}}</button>
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+
+  </div>
+</div>

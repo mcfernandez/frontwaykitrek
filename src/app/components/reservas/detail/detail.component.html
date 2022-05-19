@@ -1,0 +1,1355 @@
+
+  <!-- {{datosUsuario.token}} -->
+  <!-- servcios adicionales -->
+  <div class="modal fade" id="serviciosAdionales" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" *ngIf="ListAdditional">
+    <div class="modal-dialog modal-lg mb-0">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <p class="card-title text-success font-weight-900 ml-3 f-size-20px">
+                {{page_detail[language_page].label_agregarsa}}
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <table class="table" *ngIf="ListAdditional.normal.length!=0">
+                <thead>
+                  <tr>
+                    <th>
+                      {{page_detail[language_page].labelProducto}}
+                    </th>
+                    <th>
+                      {{page_detail[language_page].labelCosto}}
+                    </th>
+                    <th>
+                      {{page_detail[language_page].labelCantidad}}
+                    </th>
+                    <th>
+                      {{page_detail[language_page].labelTotal}}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let normal of ListAdditional.normal;let IndiceNormal=index">
+                    <td>{{normal.name}}</td>
+                    <td>{{normal.prices[0].value}}</td>
+                    <td><input type="number" (change)="cambiar_cantidad(IndiceNormal,'normal')"
+                        name="name{{normal.prices[0].id}}" class="w-10em" id="id{{normal.prices[0].id}}"
+                        [(ngModel)]="normal.quantity" min="0" max="99" (keypress)="onlyNumber(event)">
+                    </td>
+                    <td>{{normal.prices[0].value * normal.quantity}}</td>
+                  </tr>
+                  <!-- <tr>
+                    <td>Hotel</td>
+                    <td></td>
+                    <td><a (click)="irIncidencia('58cf05df-5f56-4097-b502-9ce4e01ecd57')"
+                        aria-label="Close">{{page_detail[language_page].label_solicitar}}</a></td>
+                    <td></td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row" *ngIf="ListAdditional.istour.length>0">
+            <div class="col-lg-12">
+              <p class="card-title text-success font-weight-900 ml-3 f-size-20px">
+                {{page_detail[language_page].labelOtros_tours}}
+              </p>
+            </div>
+          </div>
+          <div class="row" *ngIf="ListAdditional.istour.length>0">
+            <div class="col-lg-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>
+                      {{page_detail[language_page].labelProducto}}
+                    </th>
+                    <th>
+                      {{page_detail[language_page].labelCosto}}
+                    </th>
+                    <th>
+                      {{page_detail[language_page].labelCantidad}}
+                    </th>
+                    <th>
+                      {{page_detail[language_page].labelTotal}}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let istour of ListAdditional.istour;let Indiceistour=index">
+                    <td>{{istour.name}}</td>
+                    <td>{{istour.prices[0].value}}</td>
+                    <td><input type="number" (change)="cambiar_cantidad(Indiceistour,'istour')"
+                        name="name{{istour.prices[0].id}}" class="w-10em" id="id{{istour.prices[0].id}}"
+                        [(ngModel)]="istour.quantity" min="0" max="99"  (keypress)="onlyNumber(event)">
+                    </td>
+                    <td>{{istour.prices[0].value * istour.quantity}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="card-link btn bg-main cursor text-white"
+            (click)="modalClose()">{{page_detail[language_page].btn_cancelar}}</button>
+          <button type="button" class="card-link btn bg-main cursor text-white"
+            (click)="saveAddional();">{{page_detail[language_page].btn_agregar}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal2 pasajero-->
+  <div class="modal fade" id="pasajero" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg mb-0" *ngIf="detalletours">
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Passenger Edition </h4>
+        </div> -->
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <p class="card-title text-success font-weight-900 f-size-20px">
+                {{detalletours.booking.name}}
+              </p>
+              <hr>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <section>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <p class="titulo m-0">
+                      Passenger
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <p class="titulo m-0 text-danger">
+                      {{typePasajero}}
+                    </p>
+                  </div>
+                  <div class="col-lg-6">
+                    <p class="titulo m-0 text-muted fsixe-13">
+                      Please enter the names as they appear in the passport
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <label for="label_nombreNuevo" class=" col-form-label">Name</label>
+                    <input class="w100" [(ngModel)]="pasajero.nombre" type="text" autocomplete="off" name="nombreNuevo"
+                      id="nombreNuevo" maxlength="50" />
+                  </div>
+                  <div class="col-6">
+                    <label for="apellidoNuevo" class=" col-form-label">Last Name</label>
+                    <input class="w100" [(ngModel)]="pasajero.apellido" type="text" autocomplete="off"
+                      name="apellidoNuevo" id="apellidoNuevo" maxlength="50" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <!-- [ngStyle]="{'background':(ind%2)==0 ? '#fff' : '#eee' }" -->
+                    <label for="emailNuevo" class=" col-form-label">Country</label>
+                    <select class="form-select1" size="1" [(ngModel)]="pasajero.pais">
+                      <option value="{{x.value}}" *ngFor="let x of paises; let ind=index">
+                        {{x.label}}</option>
+                    </select>
+                  </div>
+                  <div class="col-6">
+                    <label for="fechaNacimiento"
+                      class=" col-form-label">{{page_detail[language_page].label_fechaNacimientoNuevo}}</label>
+                    <input class="w100" [(ngModel)]="pasajero.fechaNacimiento" type="date" name="fechaNacimiento"
+                      id="fechaNacimeinto" min="1900-01-01" max="{{typePasajero=='Adult'?fecha_max:fecha_hoy}}"
+                      value="{{pasajero.fechaNacimiento}}" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-3">
+                    <label for="pais" class=" col-form-label">Document Type</label>
+                    <select class="form-select1" size="1" [(ngModel)]="pasajero.tipoDocumento"
+                      (change)="pasajero.fechaExpedicion=''">
+                      <option value="{{x.id}}" *ngFor="let x of DocumentType">
+                        {{x.name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-3">
+                    <label for="documento" class=" col-form-label">Document</label>
+                    <input class="w100" [(ngModel)]="pasajero.documento" type="text" name="documento" id="documento" />
+                  </div>
+                  <div class="col-6">
+                    <label for="fechaExpedicion" class=" col-form-label">Expiration Date</label>
+                    <input class="w100" [(ngModel)]="pasajero.fechaExpedicion" type="date" name="fechaExpedicion"
+                      id="fechaExpedicion" min="1900-01-01" max="{{fecha_hoyExpiration}}" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <label for="email" class=" col-form-label">Email</label>
+                    <input class="w100" [(ngModel)]="pasajero.email" type="text" autocomplete="off" name="email"
+                      id="email" maxlength="50" />
+                  </div>
+                  <div class="col-6">
+                    <label for="phone" class=" col-form-label">Phone</label>
+                    <input class="w100" [(ngModel)]="pasajero.phone" type="text" autocomplete="off" name="phone"
+                      id="phone" maxlength="50" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <label for="pais" class=" col-form-label">Occupation</label>
+                    <select class="form-select1" size="1" [(ngModel)]="pasajero.ocupacion">
+                      <option value="{{x.id}}" *ngFor="let x of jobs">
+                        {{x.name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-3">
+                    <label for="pais" class=" col-form-label">Sex</label>
+                    <select class="form-select1" size="1" [(ngModel)]="pasajero.sex">
+                      <option value="{{x.id}}" *ngFor="let x of sex">
+                        {{x.name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-3">
+                    <label for="pais" class=" col-form-label">Civil Status</label>
+                    <select class="form-select1" size="1" [(ngModel)]="pasajero.maritalStatus">
+                      <option value="{{x.id}}" *ngFor="let x of MaritalStatus">
+                        {{x.name}}</option>
+                    </select>
+                  </div>
+
+                  <div class="mt-5"></div>
+                  <section>
+                    <div class="row">
+                      <div class="col-6">
+
+                        <label for="dateExpirationCard" class=" col-form-label">Attach image of your ID card/attach
+                          passport image</label>
+                        <form class="pb-2">
+                          <div>
+                            <label for="filep"><span class="btn-outline-green btn"> <i class="fas fa-file-upload"></i>
+                                Upload File </span> <span> : {{filename}}</span></label>
+                            <input type="file" name="filep" id="filep" class="col-12" (change)="onFileSelect($event)"
+                              style="display:none" />
+                          </div>
+                        </form>
+                        <p><small class="formatimg text-end">Format *jpg.*png./Size:1MB</small></p>
+
+                        <p><a href="{{url_file}}" target="_blank" class="pt-2 mt-1" *ngIf="url_file!=null"> <i class="fas fa-eye" style="color: green;"></i> See Attached
+                          File</a></p>
+                      </div>
+                      <div class="col-6" *ngIf="typePasajero=='Student'">
+                        <label for="dateExpirationCard" class="col-form-label">Expiration Date Card</label>
+                        <input class="w100" [(ngModel)]="pasajero.dateExpirationCard" type="date"
+                          name="dateExpirationCard" id="dateExpirationCard" min="1900-01-01" max="{{fecha_hoyExpiration}}" />
+                      </div>
+                    </div>
+
+                  </section>
+                  <div class="col-12">
+                    <hr>
+                  </div>
+                  <div class="col-6">
+                    <label for="pais" class=" col-form-label">Food Preference</label>
+                    <select class="form-select1" size="1" [(ngModel)]="pasajero.foodPreference">
+                      <option value="{{x.id}}" *ngFor="let x of FoodPreference">
+                        {{x.name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-6">
+                    <label for="pais" class=" col-form-label">Food Preference - Remarks</label>
+                    <input class="w100" [(ngModel)]="pasajero.foodPreference2" type="text" autocomplete="off"
+                      name="foodPreference2" id="foodPreference2" maxlength="50" />
+                  </div>
+
+                  <div class="col-6">
+                    <label for="pais" class=" col-form-label">Allergies</label>
+                    <input class="w100" [(ngModel)]="pasajero.allergies" type="text" autocomplete="off" name="Allergies"
+                      id="Allergies" maxlength="50" />
+                  </div>
+                  <div class="col-6">
+                    <label for="pais" class=" col-form-label">Medical Requirement </label>
+                    <input class="w100" [(ngModel)]="pasajero.medical" type="text" autocomplete="off" name="medical"
+                      id="medical" maxlength="50" />
+                  </div>
+
+                  <div class="col-6">
+                    <label for="pais" class=" col-form-label">Trekking Experience</label>
+                    <select class="form-select1" size="1" [(ngModel)]="pasajero.TrekkingExperience">
+                      <option value="{{x.id}}" *ngFor="let x of TrekkingExperience">
+                        {{x.name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-6">
+                    <label for="pais" class=" col-form-label">What is the purpose of your trip?</label>
+                    <select class="form-select1" size="1" [(ngModel)]="pasajero.travelPurpose">
+                      <option value="{{x.id}}" *ngFor="let x of TravelPurpose">
+                        {{x.name}}</option>
+                    </select>
+                  </div>
+                </div>
+
+
+              </section>
+
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="card-link btn bg-main cursor text-white"
+            (click)="modalClose()">{{page_detail[language_page].btn_cancelar}}</button>
+          <button type="button" class="card-link btn bg-main cursor text-white" aria-label="Close"
+            (click)="saveEditPassanger();">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3 pagos -->
+  <div class="modal fade" id="pagosModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg mb-0" *ngIf="detalletours">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="card-title text-success font-weight-900 h3 ml-3 mb-0 pb-0">
+            Payment Information
+          </p>
+        </div>
+        <div class="modal-body pt-3 pb-0">
+          <div class="row">
+            <div class="col-lg-12">
+              <section>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <p class="card-title text-success font-weight-900 ml-3">
+                      {{detalletours.booking.name}}
+                    </p>
+                    <hr>
+                  </div>
+                </div>
+                <div class="row pb-1">
+                  <div class="col-md-7">
+                    <div class="card-body pt-0 pb-0">
+                      <p class="card-text m-0"><strong>{{page_detail[language_page].qe_labelCodigoReserva}}:
+                        </strong>{{detalletours.booking.code}}</p>
+                      <p class="card-text m-0"><strong>{{page_detail[language_page].qe_labelFechaViaje}}: </strong>
+                        {{detalletours.booking.tripDate}}</p>
+                      <p class="card-text m-0"><strong>{{page_detail[language_page].qe_labelFechaModificacion}}:
+                        </strong>{{detalletours.booking.buyDate}}</p>
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="card-body pt-0 pb-0">
+                      <p class="card-text m-0"><strong>{{page_detail[language_page].qe_labelTipo}}:
+                        </strong>{{detalletours.booking.type}}
+                      </p>
+                      <p class="card-text m-0"><strong>{{getCategory(detalletours.booking.idcategory)}}:
+                        </strong>{{detalletours.booking.category}}</p>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+              </section>
+              <section>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <p class="card-title text-success font-weight-900 ml-3 f-size-20px">
+                      Pay
+                    </p>
+                  </div>
+                </div>
+                <div class="row p-3 pt-0 pb-0">
+                  <div class="col-lg-3  m-auto">
+                    <p>Amount</p>
+                  </div>
+                  <div class="col-lg-9 p-0">
+                    <div class="row">
+                      <div class="col">
+                        <p class="card-title text-success font-weight-900 ml-3">
+                          {{detalletours.booking.debt | currency: 'USD' | lowercase}}
+                        </p>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row p-3">
+                  <div class="col-lg-6 p-0">
+                    <div class="row">
+                      <div class="col">
+                        <input type="number" name="montoPagar" min="0" class="col-12" id="montoPagar" [(ngModel)]="montoPagar"
+                          autocomplete="off" placeholder="Amount Payable">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row p-3">
+                  <div class="col-lg-12 p-0">
+                    <div class="row">
+                      <div class="col">
+                        <textarea name="mensaje" id="mensaje" rows="3" [(ngModel)]="mensaje_pagos"
+                          placeholder="Description of the amount to be paid"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row pt-6 mb-3" *ngIf="mostrar_pago!=true">
+                  <div class="col-12">
+
+                    <form name="f1" id="f1" action="#" method="post" class="alignet-form-vpos2">
+
+                      <input type="hidden" name="acquirerId" value="29" />
+                      <input type="hidden" name="idCommerce" value="16210" />
+                      <input type="hidden" name="purchaseAmount" value="{{montoPagar*100}}" />
+                      <!-- valor a pagar  H -->
+                      <input type="hidden" name="purchaseCurrencyCode" value="840" />
+                      <!-- tipo de moneda q  -->
+                      <input type="hidden" name="purchaseOperationNumber" value="{{datos_save.transactionId}}" />
+                      <!-- dato del save transactionId  -->
+                      <input type="hidden" name="language" value="SP" />
+                      <input type="hidden" name="shippingFirstName" value="{{datosUsuario.lastName}}" />
+                      <!-- datos de usuario -->
+                      <input type="hidden" name="shippingLastName" value="{{datosUsuario.name}}" />
+                      <input type="hidden" name="shippingEmail" value="{{datosUsuario.email}}" />
+                      <input type="hidden" name="shippingAddress" value="Direccion ABC" />
+                      <input type="hidden" name="shippingZIP" value="Zip 123" />
+                      <input type="hidden" name="shippingCity" value="City ABC" />
+                      <input type="hidden" name="shippingState" value="STATE ABC" />
+                      <input type="hidden" name="shippingCountry" value="PE" />
+
+                      <input type="hidden" name="userCommerce" value="" />
+                      <input type="hidden" name="userCodePayme" value="" />
+                      <input type="hidden" name="descriptionProducts" value="{{detalletours.booking.name}}" />
+                      <!-- nombre del tour json.name -->
+                      <input type="hidden" name="programmingLanguage" value="C#" />
+                      <input type="hidden" name="purchaseVerification" value="{{datos_save.transactionKey}}" />
+                      <!-- dato del save transactionKey  -->
+                      <input type="hidden" name="reserved1" value="{{datos_save.bookingId}}" />
+                      <input type="hidden" name="reserved2" value="{{datosUsuario.token}}" />
+                      <input type="hidden" name="reserved3" value="{{mensaje_pagos}}" />
+                      <input type="hidden" name="reserved4" value="{{detalletours.booking.code}}" />
+
+
+                      <!-- dato del save bookingId -->
+                      <div class="col-12  pb-5 text-end ">
+                        <input id="prod" style="display: none;" class=" pagarMostrasPasarela" type="button"
+                          onclick="javascript:AlignetVPOS2.openModal('','1')"
+                          value="{{page_bookings[language_page].titulo_btnpago}}">
+                        <input id="dev" style="display: none;" class=" pagarMostrasPasarela" type="button"
+                          onclick="javascript:AlignetVPOS2.openModal('https://integracion.alignetsac.com/','1')"
+                          value="{{page_bookings[language_page].titulo_btnpago}}">
+                      </div>
+                    </form>
+
+<!-- 
+                    <form name="f1" id="f1" action="#" method="post" class="alignet-form-vpos2">
+                      <input type="hidden" id="acquirerId" name="acquirerId" value="144" />
+                      <input type="hidden" id="idCommerce" name="idCommerce" value="12561" />
+                      <input type="hidden" id="purchaseAmount" name="purchaseAmount" value="{{montoPagar*100}}" />
+                      <input type="hidden" id="purchaseCurrencyCode" name="purchaseCurrencyCode" value="604" />
+                      <input type="hidden" id="purchaseOperationNumber" name="purchaseOperationNumber" value="{{datos_save.transactionId}}" />
+                      
+                      <input type="hidden" name="language" value="SP" />
+                      <input type="hidden" name="shippingFirstName" value="{{datosUsuario.lastName}}" />
+                      
+                      <input type="hidden" name="shippingLastName" value="{{datosUsuario.name}}" />
+                      <input type="hidden" name="shippingEmail" value="{{datosUsuario.email}}" />
+                      <input type="hidden" name="shippingAddress" value="Direccion ABC" />
+                      <input type="hidden" name="shippingZIP" value="Zip 123" />
+                      <input type="hidden" name="shippingCity" value="City ABC" />
+                      <input type="hidden" name="shippingState" value="STATE ABC" />
+                      <input type="hidden" name="shippingCountry" value="PE" />
+
+                      <input type="hidden" name="userCommerce" value="" />
+                      <input type="hidden" name="userCodePayme" value="" />
+                      <input type="hidden" name="descriptionProducts" value="{{jsonTour.name}}" />
+                      
+                      <input type="hidden" name="programmingLanguage" value="C#" />
+                      <input type="hidden" name="purchaseVerification" value="{{datos_save.transactionKey}}" />
+                      
+                      <input type="hidden" name="reserved1" value="{{datos_save.bookingId}}" />
+                      
+
+                      <input type="hidden" name="reserved3" value="Compra Inicial" />
+                      <input type="hidden" name="reserved4" value="{{datos_save.code}}" />
+                       
+                        <div class="col-12  pb-5 text-end ">
+                          <input id="prod" style="display: none;" class=" pagarMostrasPasarela" type="button"
+                            onclick="javascript:AlignetVPOS2.openModal('','1')" value="{{page_bookings[language_page].titulo_btnpago}}">
+                          <input id="dev" style="display: none;" class=" pagarMostrasPasarela" type="button"
+                            onclick="javascript:AlignetVPOS2.openModal('https://integracion.alignetsac.com/','1')" value="{{page_bookings[language_page].titulo_btnpago}}">
+                        </div>
+                    </form> -->
+
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="card-link btn bg-main cursor text-white"
+            (click)="modalClose()">{{page_detail[language_page].btn_cancelar}}</button>
+          <button type="button" class="card-link btn bg-main cursor text-white" (click)="pagar_modal();">Pay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal terminos y condiciones-->
+  <div class="modal fade" id="terminoCondiciones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" *ngIf="page_detail">
+    <div class="modal-dialog modal-lg mb-0">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">
+            {{page_detail[language_page].label_tituloterminoNuevo}}</h4>
+        </div>
+        <div class="modal-body">
+          <!-- <p class="text-justify h4">{{page_detail[language_page].textoterminoNuevo}}</p> -->
+          <p>Thank you for choosing Wayki Trek, we ask you to read the following terms and
+            conditions of the trip to establish the guidelines that we work within. Once we have
+            received your request and deposit we will sign a contract, under the following
+            conditions.</p>
+          <h5>Bookings - Confirmations:</h5>
+          <p>Wayki Trek requires the following information to proceed with your reservation and
+            confirmation of your vacation. Please bear in mind that this information is strictly
+            confidential; Wayki Trek will not make it public, except in cases where this information
+            is necessary to safeguard your personal security and health (such as allergies,
+            medications, medical treatments, dietary restrictions, etc)</p>
+          <h5>Necessary Information:</h5>
+          <p>
+            •	Full Name (as it appears in your passport)<br>
+            • Nationality<br>
+            • Passport Number<br>
+            • Age<br>
+            • Occupation<br>
+            • Dietary restrictions (alergies, vegetarians, special diets, restrictions)<br>
+            • Medicinal restrictions (please specify is you have a current medication<br>
+            • or actual surgeries)<br>
+            • Allergies<br>
+            • Address, email, home phone number and emergency contact number<br>
+            We will send a form to be completed with the above details.
+          </p>
+          <h5>Payment and Deposits:</h5>
+          <p>
+            •	After making your reservation, Wayki Trek will send you a reply with a confirmation
+            of your trip, which guarantees that the services will be provided as requested.
+            We ask for an initial deposit of 50% of your trek price, before sending the confirmation.
+            This deposit is non-refundable if you then cancel your trip. <strong>The balance must be
+            paid at your briefing time.</strong></p>
+          <h5>Payment Methods:</h5>
+          <p>
+            •	You will be able to make the total or partial payment of your tour or package in our
+            payment gateway within the reservation system, with complete security and you will
+            receive a confirmation email.</p>
+           <h5>Cancellations Policy:</h5>
+          <p>Wayki Trek reserves the right to cancel any trip in the following cases:</p>
+          <p>
+            • If the client does not pay the full balance of their trip at the time of the briefing.
+            In this case there is no refund of the deposit paid.<br>
+            • Events beyond our control that make the operation of our tours impossible
+            (strikes, protests, flight cancellations, weather conditions, overbooking by
+            hotels and airlines). In this situation, we will suggest possible solutions and try
+            to operate the planned program. Additional costs incurred in this situation will
+            not be covered by Wayki Trek.<br>
+            • If you cancel your trip, you must notify us in writing, bearing in mind that the
+            deposit required at the time of confirmation is non-refundable and that you will
+            be required to pay the amount due according to the date you cancel your
+            program. The cancellation must be sent in writing explaining the reason for the
+            cancellation.<br>
+            • Due to the strict regulations established by Machu Picchu Picchu Park, once the
+            reservation is made, the space and permit purchased cannot be cancelled. It is
+            also impossible to transfer the permit to another person with a different name,
+            the date of your permit cannot be modified either. Therefore, if you are unable
+            to arrive on the scheduled date, no refunds can be made.<br>
+            • Permits are non-refundable and WAYKI TREK will purchase permits as soon as
+            booking confirmation is sent.</p>
+            <h5>Cancelling Policy Covid-19:</h5>
+            <p>Special terms and conditions: In the event that the COVID 19 pandemic situation
+            continues throughout the world, Wayki Trek will give you the option to reschedule
+            your trip or have a credit note for the future or return in coordination with the
+            regulatory institutions of tourist attractions.</p>
+            <p>Consider:</p>
+            <p>
+              • If you cancel the reservation between 30 and 11 days prior to the start of your trip; you will be required to pay 50% of the total cost.<br>
+              • If you cancel your reservation between 10 and 4 days before the start of your trip; you will be asked to pay 80% of the total cost.<br>
+              • If you cancel your reservation between 1 and 3 days before the start of your trip; you will be asked to pay 100% of the total cost.</p>
+
+            <p>In the event that you decide to withdraw from the trek once it has started, you will be
+              responsible for all additional charges such as: food and transportation that may occur
+              due to the modification of your itinerary. However, you may rejoin the group for the
+              visit to the citadel of Machu Picchu and use the same services thereafter.
+              In the event that you decide to cancel the trip due to a health or personal problem;
+              the previous cancellation policies will apply as the company had already incurred
+              administrative and logistical costs for your trek.</p>
+            <p>In case you are going to update your passport, make sure to take a photo of your
+              previous passport in order to update your passport number on your permits. It is
+              mandatory to show a photo of your old and new passport to the Ministry of Culture.
+              Also, we cannot change your last name on any of your permits or related entries.
+              In all of the above cases, we will need to repurchase your permits, so you will need
+              to pay a fee of $115 USD in order to repurchase your permits or related entries, as
+              this is a requirement of the Ministry of Culture.</p>
+            <h5>Services included:</h5>
+            <p>Wayki Trek includes the services detailed in each of its programs and is committed to
+              deliver them in full.<br>
+            •	If your trip includes accommodation, breakfast is included (varies according to
+            hotel standard). Accommodation prices do not include the 18% tax applicable
+            to Peruvian residents. You must show your passport and your original
+            immigration card (given to you when you enter the country) when checking
+            into your hotel, or the hotel may add the tax to your bill. We also ask our guests
+            (non-residents of Peru) to provide us with copies of their Passports and 
+            Immigration Cards to complete the 18% tax exemption, which is applicable to
+            Peruvian residents.</p>
+            <h5>Services not included:</h5>
+          <p>
+            •	Airport tax (domestic and international)<br>
+            • Domestic and international airline tickets<br>
+            • Excess baggage fees<br>
+            • Unplanned visits and activities<br>
+            • Alcoholic beverages, bottled water, rehydrating beverages<br>
+            • Food not mentioned in the program<br>
+            • Lodging not mentioned in the program<br>
+            • Gratuities (optional) for staff<br>
+            • Laundry service<br>
+            • Travel insurance<br>
+            • Additional expenses incurred for reasons not related to Wayki Trek operations.</p>
+            <h5>Responsibilities:</h5>
+          <p>Wayki Trek operates the treks directly, with equipment and trained staff to ensure
+            their successful completion. We also subcontract accommodation, restaurants, airlines
+            and other third party services, which have been pre-approved as meeting the
+            standards Wayki Trek intends to provide to our clients. However, these services
+            Providers are independent and Wayki Trek has no direct control over them.
+            Wayki Trek is not responsible for problems caused by these suppliers, such as loss of
+            luggage, delays, damages, etc., but may intervene to help customers.</p>
+          <p>
+            •The payment of the reservation of our program implies acceptance of the terms
+            and conditions detailed and covers our services and all participants in them.</p>
+          <p>Wayki Trek is committed to follow the principles of ecotourism in our operations, and
+            request the understanding and cooperation of hikers, especially in not polluting the
+            waters and the proper disposal of non-biodegradable waste. We must also respect the
+            customs and traditions of the local population.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="card-link btn btn-secondary cursor text-white"
+            (click)="modalClose()">{{page_detail[language_page].labelClose}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal terminos y condiciones-->
+  <div class="modal fade" id="terminoCondicionesCorp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" *ngIf="page_detail">
+    <div class="modal-dialog modal-lg mb-0">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">
+            {{page_detail[language_page].label_tituloterminoNuevo}}</h4>
+        </div>
+        <div class="modal-body">
+          <!-- <p class="text-justify h4">{{page_detail[language_page].textoterminoNuevo}}</p> -->
+          <p>Thank you for choosing Wayki Trek, we ask that you read the following terms and
+              conditions of the trip to establish the guidelines in which we work. Once we have
+              Received your request and prepayment, we will sign a contract, under the following
+              Terms:
+          </p>
+          <h5>RESERVATION POLICY</h5>
+          <p>1. Minimum reservations 60 days before the departure date.</p>
+          <p>2. Only new groups will be accepted with a minimum of 2 Pax, with an anticipation greater than 60 days prior to the start of the service with (50% availability spaces IN THE DDC</p>
+          <p>3. In case the requirement is after 60 days, it is consulted with reservations and it is opened with a minimum of 4 Pax.</p>
+          <p>4. The reservation request is by email, the same that will be confirmed by the same means, and once confirmed there will be no right to modifications since the permits or income purchased for Machupichu, Huaynapicchu, Machupichu Montaña and Inca Trail are not refundable and / or transferable.</p>
+          <p>5. For the reservation of trek services, the passenger's personal data is required such as: Names and surnames, valid passport number, nationality, age, gender, occupation, and food options.</p>
+          <p>6. The reservation is considered confirmed, once the Pre deposit has been made in favor of the company especially for Inca Trail, unless the company has agreements with the client (corporate client with credit)</p>
+          <br>
+          <p>The supplier company will provide all the information related to the paxs for a good coordination and execution of the services, in case of lack of coordination in the absence of real information, the consequences caused will not be the responsibility of WAYKI TREK</p>
+          <h5>Payments:</h5>
+          <p>1.- A prepayment of $ 150.00 will be made for the acquisition of the entrance ticket<br>
+              2.- The balance is credit and will be collected by our accounting offices and must be deposited in:<br><br>
+              Interbank Bank<br>
+              Cta. Cte. Dollars: Nº 420-303876386-0<br>
+              Interbank code: 003-420-013038763860-79<br>
+              Swift Code: BINPPEPL<br>
+              Company name: WAYKI TREK TRANSPORTES TURÍSTICOS</p>                
+              
+          <h5>CANCELLATIONS:</h5>
+          <p>1. On the Inca trail there are no cancellations or modifications, therefore the payment made for the entrance ticket for passengers and porters is not refundable.<br>
+              2. Cancellations on the Inca trail with 30 days in advance do not suffer any charge. (Except for entry tickets for passengers and porters)<br>
+3. From 30 to 10 days the penalty is 50% of the total cost<br>
+4. From 10 to 3 days the penalty of 80% of the total cost<br>
+5. From 2 days to the day of departure the penalty is 100% (No show)<br>
+6. Other services up to 15 days at no cost<br>
+7. Other services 15-3 days before, is for expenses incurred to date.<br>
+8. From two days to the day of departure is 100% (No Show)<br>
+9. In the event that the client leaves due to their own decision or health, the expenses incurred by the Pax will be at their own expense, except for the services that are included in the tour, which can be used on the corresponding dates</p>
+          <h5>SERVICES NOT INCLUDED</h5>
+          <p>                
+• Airport taxes (national and international)<br>
+• National and international airline tickets<br>
+• Excess baggage fees<br>
+• Unplanned visits and activities<br>
+• Alcoholic beverages, bottled water, rehydration drinks<br>
+• Food not mentioned in the program<br>
+• Accommodation not mentioned in the program<br>
+• Tips (optional) for staff<br>
+• Laundry service<br>
+• Travel insurance<br>
+• Additional expenses incurred for reasons unrelated to Wayki Trek operations.</p>
+<h5>RESPONSIBILITIES</h5>
+<p>Wayki Trek operates the treks directly, with equipment and trained personnel to ensure
+its successful completion. We also outsource accommodation, restaurants, airlines.
+and other third-party services, which have been previously approved for complying with the
+standards that Wayki Trek aims to provide to our customers. However, these services
+The providers are independent and Wayki Trek has no direct control over them.
+Wayki Trek is not responsible for problems caused by these providers, such as loss of
+luggage, delays, damage, etc., but you can step in to help customers.</p>
+<p>• The payment of the reservation of our program implies the acceptance of the terms
+and detailed conditions and covers our services and all participants in them.</p>
+<p>Wayki Trek is committed to following the principles of ecotourism in our operations, and
+Request the understanding and cooperation of hikers, especially not to contaminate the
+water and the correct disposal of non-biodegradable waste. We must also respect the
+customs and traditions of the local population.
+<p>In order to be constantly communicated, we send you our email addresses: corporate@waykitrek.net, booking@waykitrek.net as well as the emergency numbers: 958317303 (RPC), 989146917 (RPC) and Fixed 084-224092 Cusco , 01-2418796 Lima (during office hours)
+Also, remind them that they can do transfer services with us since we have our own units and also agreements with tourist transport companies.</p>
+<p>Thanking you for your preference, we remain yours.</p>
+<p>Sincerely</p>
+<p>WAYKI TREK TOURIST TRANSPORTATION.</p>
+
+
+
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="card-link btn btn-secondary cursor text-white"
+            (click)="modalClose()">{{page_detail[language_page].labelClose}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- contenido -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-6 p-0" *ngIf="detalletours">
+            <h3 class="card-title text-success font-weight-900 h3">{{page_detail[language_page].labelMireservas}}
+            </h3>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col-lg-12 segundario" *ngIf="detalletours">
+            <!-- Datos Generales -->
+            <section>
+              <div class="row">
+                <div class="col-lg-12">
+                  <p class="card-title font-weight-900 h4 mt-3">
+                    {{detalletours.booking.name}}
+                  </p>
+                  <hr>
+                </div>
+                <div class="col-lg-12">
+                  <div class="row">
+                    <div class="col-md-7 p-0">
+                      <div class="card-body pt-0 pb-0">
+                        <p class="card-text mb-0"><strong>{{page_detail[language_page].qe_labelCodigoReserva}}:
+                          </strong>{{detalletours.booking.code}}</p>
+                        <p class="card-text mb-0"><strong>{{page_detail[language_page].qe_labelFechaViaje}}: </strong>
+                          {{detalletours.booking.tripDate}}</p>
+                        <p class="card-text mb-0"><strong>{{page_detail[language_page].qe_labelFechaModificacion}}:
+                          </strong>{{detalletours.booking.buyDate}}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-5">
+                      <div class="card-body pt-0 pb-0">
+                        <p class="card-text mb-0"><strong>{{page_detail[language_page].qe_labelTipo}}:
+                          </strong>{{detalletours.booking.type}}</p>
+                        <p class="card-text mb-0"><strong>{{getCategory(detalletours.booking.idcategory)}}:
+                          </strong>{{detalletours.booking.category}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- pasajero -->
+            <section class="p-3">
+              <div class="row">
+                <div class="col-lg-12">
+                  <p class="titulo">
+                    {{page_detail[language_page].labelPasajeros}} <i class="fas fa-users"></i>
+                  </p>
+                  <hr>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>
+                          {{page_detail[language_page].labelTipo_pasajero}}
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelCantidad_pasajero}}
+                        </th>
+                        <th class="text-end">
+                          {{page_detail[language_page].labelTotal_pasajeros}}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let passanger of detalletours.passanger;">
+                        <td>{{passanger.type}}</td>
+                        <td>{{passanger.quantity}}</td>
+                        <td class="text-end">
+                          {{passanger.total | currency: 'USD' | lowercase}}
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td></td>
+                        <td class="text-center">
+                          Total
+                        </td>
+                        <td class="text-end">{{total_passengers | currency: 'USD' | lowercase}}</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </section>
+
+            <!-- servicios incluidos -->
+            <section class="p-3">
+              <div class="row">
+                <div class="col-lg-12">
+                  <p class="titulo">
+                    {{page_detail[language_page].labelServicios_incluidos}} <i class="fas fa-puzzle-piece "></i>
+                  </p>
+                  <hr>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>
+                          Nro
+                        </th>
+                        <th class="text-start">
+                          {{page_detail[language_page].labelServicio}}
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelObservacion}}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let includeServices of detalletours.includeServices;">
+                        <td>{{includeServices.number}}</td>
+                        <td class="text-start">{{includeServices.name}}</td>
+                        <td>{{includeServices.observation}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+
+            <!-- hoteles -->
+            <section class="p-3" *ngIf="detalletours.hotels.length>0">
+              <div class="row">
+                <div class="col-lg-12">
+                  <p class="titulo">
+                    Hotel <i class="fas fa-users"></i>
+                  </p>
+                  <hr>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>
+                          Date of Purchase
+                        </th>
+                        <th>
+                          Hotel / Room
+                        </th>
+                        <th>
+                          Cost
+                        </th>
+                        <th>
+                          Amount
+                        </th>
+                        <th class="text-end">
+                          Total
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let hotel of detalletours.hotels">
+                      <tr>
+                        <td>{{hotel.date}}</td>
+                        <td>{{hotel.hotelroom}}</td>
+                        <td>{{hotel.cost}}</td>
+                        <td>{{hotel.amount}}</td>
+                        <td class="text-end">{{hotel.total | currency: 'USD' | lowercase}}</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-center">
+                          Total
+                        </td>
+                        <td class="text-end">{{total_hotels | currency: 'USD' | lowercase}}</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+
+
+            </section>
+
+
+
+
+            <!-- servicios adicionales  -->
+            <section class="p-3" *ngIf="detalletours.additionalServices.length>0">
+              <div class="row">
+                <div class="col-lg-12">
+                  <p class="titulo">
+                    {{page_detail[language_page].label_tituloAS}} <i class="fas fa-object-group"></i>
+                  </p>
+                  <hr>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>
+                          {{page_detail[language_page].labelFecha_compra}}
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelProducto}}
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelCosto}}
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelCantidad}}
+                        </th>
+                        <th class="text-end">
+                          {{page_detail[language_page].labelTotal}}
+                        </th>
+                        <th>
+
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let includeServices of detalletours.additionalServices;">
+                        <td>{{includeServices.buyDate}}</td>
+                        <td>{{includeServices.productName}}</td>
+                        <td class="text-end">{{includeServices.PRICE | currency: 'USD' | lowercase}}</td>
+                        <td>{{includeServices.quantity}}</td>
+                        <td class="text-end">
+                          {{includeServices.total | currency: 'USD' | lowercase}}
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{page_detail[language_page].labelTotal}}</td>
+                        <td class="text-end">{{total_Servicios_adicionales | currency: 'USD' | lowercase}}</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+
+            </section>
+
+            <!-- Otros Tours  -->
+            <section class="p-3" *ngIf="detalletours.otherTours.length>0">
+              <div class="row">
+                <div class="col-lg-12">
+                  <p class="titulo">
+                    {{page_detail[language_page].labelOtros_tours}} <i class="fas fa-edit"></i>
+                  </p>
+                  <hr>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>
+                          {{page_detail[language_page].labelFecha_compra}}
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelProducto}}
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelCosto}}
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelCantidad}}
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelTotal}}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let otherTours of detalletours.otherTours;">
+                        <td>{{otherTours.buyDate}}</td>
+                        <td>{{otherTours.productName}}</td>
+                        <td class="text-end">{{otherTours.price | currency: 'USD' | lowercase}}</td>
+                        <td>{{otherTours.quantity}}</td>
+                        <td class="text-end">
+                          {{otherTours.total | currency: 'USD' | lowercase}}
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{page_detail[language_page].labelTotal}}</td>
+                        <td class="text-end">{{total_otherTours | currency: 'USD' | lowercase}}</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+
+            </section>
+
+            <section>
+              <div class="row p-3">
+                <div class="col-6">
+                  <a (click)="irIncidencia('3dd8d28e-c9fe-4a15-b2f5-9f342da21783')"><i class="fas fa-trash-alt"></i>
+                    {{page_detail[language_page].label_eliminarsa}}</a><br>
+                    <small (click)="openModal('terminoCondicionesCorp')" class="cursor text-danger" *ngIf="datosUsuario.corporateClientId!=null"><i class="fas fa-ban"></i>
+                    {{page_detail[language_page].terminos_eliminacion}}</small>
+                    <small (click)="openModal('terminoCondiciones')" class="cursor text-danger"*ngIf="datosUsuario.corporateClientId==null"><i class="fas fa-ban"></i>
+                      {{page_detail[language_page].terminos_eliminacion}}</small>
+
+
+                </div>
+                <div class="col-6 text-end ">
+                  <a (click)="openModal('serviciosAdionales')"><i class="fas fa-plus"></i> {{page_detail[language_page].label_agregarsa}}</a>
+                </div>
+              </div>
+            </section>
+            <!-- Balance Final  -->
+            <section class="p-3">
+              <div class="row">
+                <div class="col-lg-12">
+                  <p class="titulo">
+                    {{page_detail[language_page].labelBalance_final}} <i class="fas fa-balance-scale"></i>
+                  </p>
+                  <hr>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>
+                          {{page_detail[language_page].labelFecha}}
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelDetalle}}
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelComision}}
+                        </th>
+                        <th class="text-end">
+                          {{page_detail[language_page].labelMonto}}
+                        </th>
+                        <th>
+                          
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr style="background: #f5f5f5;">
+                        <td><strong>Purchase</strong> </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>                      
+                      <tr *ngFor="let bu of detalletours.buy;">
+                        <td>{{bu.buyDate}}</td>
+                        <td>{{bu.paymentMethod}}</td>
+                        <td> {{bu.commission}}</td>
+                        <td class="text-end">{{bu.total | currency: 'USD' | lowercase}}</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Total</strong> </td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-end">{{total_buys | currency: 'USD' | lowercase}}</td>
+                        <td></td>
+                      </tr>
+
+                      <tr style="background: #f5f5f5;">
+                        <td><strong>Payment</strong> </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>                      
+
+                      <tr *ngFor="let payments of detalletours.payments;">
+                        <td>{{payments.buyDate}}</td>
+                        <td>{{payments.paymentMethod}}</td>
+                        <td> {{payments.commission}}</td>
+                        <td class="text-end">{{payments.total | currency: 'USD' | lowercase}}</td>
+                        <td></td>
+
+                      </tr>
+                      <tr>
+                        <td><strong>Total</strong> </td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-end">{{total_payments | currency: 'USD' | lowercase}}</td>
+                        <td></td>
+                      </tr>
+
+                      <tr style="background: #f5f5f5;">
+                        <td><strong>Discounts</strong> </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr> 
+                      <tr *ngFor="let payments of detalletours.paymentExtra.substract;">
+                        <td>{{payments.buyDate}}</td>
+                        <td>{{payments.name}}</td>
+                        <td> </td>
+                        <!-- <td> {{payments.commission}}</td> -->
+                        <td class="text-end">{{payments.total | currency: 'USD' | lowercase}}</td>
+                        <td></td>
+
+                      </tr>
+                      <tr>
+                        <td><strong>Total</strong> </td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-end">(-{{total_substract | currency: 'USD' | lowercase}})</td>
+                        <td></td>
+                      </tr>
+                      <tr style="background: #f5f5f5;">
+                        <td><strong>Addition</strong> </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      
+                      <tr *ngFor="let payments of detalletours.paymentExtra.add;">
+                        <td>{{payments.buyDate}}</td>
+                        <td>{{payments.name}}</td>
+                        <td> </td>
+                        <td class="text-end">{{payments.total | currency: 'USD' | lowercase}}</td>
+                        <td></td>
+
+                      </tr>
+                      <tr>
+                        <td><strong>Total</strong> </td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-end">{{total_add | currency: 'USD' | lowercase}}</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr style="background: #ebebeb;">
+                        <td><strong>Outstanding Balance</strong></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-end">
+                          {{detalletours.booking.debt | currency: 'USD' | lowercase}}
+                        </td>
+                        <td *ngIf="detalletours.booking.debt>0">
+                          <div  *ngIf="datosUsuario.corporateClientId==null">
+                            <a (click)="openModal('pagosModal')"><i class="fas fa-money-bill-wave"></i> {{page_detail[language_page].labelPagar}}</a>
+                          </div>
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </section>
+
+
+            <!-- Lsitados de Pasajeroas  -->
+            <section class="p-3" *ngIf="detalletours.passangerRegistry.length>0">
+              <div class="row">
+                <div class="col-lg-12">
+                  <p class="titulo">
+                    {{page_detail[language_page].labelListado_Pasajeros}} <i class="fas fa-users"></i>
+                  </p>
+                  <hr>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Nro
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelNombre_apellido}}
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelPasajero}}
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelDato_registrado}}
+                        </th>
+                        <th>
+
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let passangerRegistry of detalletours.passangerRegistry">
+                      <tr>
+                        <td>{{passangerRegistry.number}}</td>
+                        <td>{{passangerRegistry.name}}</td>
+                        <td>{{passangerRegistry.type}}</td>
+                        <td>
+                          <div class="progress">
+                            <div class="progress-bar bg-main" role="progressbar"
+                              style="width: {{passangerRegistry.percentage}}%;" 
+                              aria-valuenow="{{passangerRegistry.percentage}}" aria-valuemin="0" aria-valuemax="100">
+                              {{passangerRegistry.percentage| number:'1.0-0'}}%</div>
+                          </div>
+                        </td>
+                        <td (click)="abrir_modal_pasajero(passangerRegistry)">
+                          <i class="fas fa-user-edit cursor"></i>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <a (click)="irIncidencia('0b1fdf32-b48c-4c7c-a9b9-85eeba5e4548')">
+                    <i class="fas fa-user-minus"></i> {{page_detail[language_page].label_Eliminarp}}</a><br>
+                    <small (click)="openModal('terminoCondicionesCorp')" class="cursor text-danger"*ngIf="datosUsuario.corporateClientId!=null"><i class="fas fa-ban"></i>
+                    {{page_detail[language_page].terminos_eliminacion}}</small>
+                    <small (click)="openModal('terminoCondiciones')" class="cursor text-danger"*ngIf="datosUsuario.corporateClientId==null"><i class="fas fa-ban"></i>
+                      {{page_detail[language_page].terminos_eliminacion}}</small>
+                </div>
+                <div class="col-6 text-end ">
+                  <a (click)="irIncidencia('91784499-283a-44e9-b070-6d6cbef982e5')">
+                    <i class="fas fa-user-friends"></i> {{page_detail[language_page].label_agregarp}}</a>
+                </div>
+              </div>
+            </section>
+
+
+
+
+
+            <!--Resumen -->
+            <section class="p-3">
+              <div class="row">
+                <div class="col-lg-12">
+                  <p class="titulo">
+                    {{page_detail[language_page].labelResumen}} <i class="fas fa-window-restore"></i>
+                  </p>
+                  <hr>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>
+                          Nro
+                        </th>
+                        <th>
+                          Tour
+                        </th>
+                        <th>
+                          {{page_detail[language_page].labelObservacion}}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let resume of detalletours.resume">
+                        <td>{{resume.number}}</td>
+                        <td>{{resume.tour}}</td>
+                        <td>{{resume.observations}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="row" *ngIf="detalletours.booking.observation!=null">
+                <div class="col-lg-12">
+                  <p class="titulo">
+                    {{page_detail[language_page].labelObservation}} <i class="fas fa-window-restore"></i>
+                  </p>
+                  <hr>
+                </div>
+                <div class="col-lg-12">
+                  {{detalletours.booking.observation}}
+                </div>
+              </div>
+
+            </section>
+
+          </div>
+
+          <div class="col-lg-12 segundario p-5 text-center" *ngIf="!detalletours">
+            <img class="pt-5" src="http://www.waykitrek.net/wp-content/themes/wayki/assets/img/logo.png" alt="..." style="opacity: .5;">
+          </div>
+        </div>
+
+      </div>
+
+
+   
+
+  </div>

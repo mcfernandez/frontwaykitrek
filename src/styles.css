@@ -1,0 +1,183 @@
+html, body {
+    background: #eeeeee !important;
+}  
+a{
+    color: #000000 !important
+}
+li.active a, li:hover a{
+color: #1a7b2e !important;
+font-weight: 700;
+}
+.d-md-flex{
+    display: block !important;
+}
+
+nav.bg-light {
+    background-color: #fff !important;
+}
+#principal {
+padding-bottom: 40px!important;
+}
+.bg-main {
+background: #1a7b2e;
+}
+.descripcion_max {
+font-size: 12px;
+margin-top: 1em;
+}
+.color-main {
+color: #1a7b2e;
+}
+.color-white {
+color: #ffffff;
+}
+.btn-success{
+    background-color: #1a7b2e !important;
+}
+
+.segundario{
+    background: #ffffff;
+    padding: 30px !important;
+    min-height: 315px;
+
+}
+.segundario section, .segundario section.p-3{
+    padding: 0 !important;
+}
+h3.card-title{
+    
+}
+h3.size-2em{
+    color: #1a7b2e !important;
+}
+.logo{
+    width: 4em !important;
+}
+.navbar-brand{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.nav-item{
+    font-size: .9rem;
+    padding: .5rem 0.5rem;
+}
+a.nav-link{
+    font-size: .9rem;
+    padding: 0;
+}
+
+/* .container-fluid{
+    padding-left: 0;
+    padding-right: 0;
+} */
+#principal a.nav-link{
+    padding: 5px;    
+}
+.card.tickets, .card.tickets .border{    
+    border: none !important;
+}
+.card.tickets .card-footer{
+    padding: 0;
+}
+.card.tickets .card-footer button,.card.tickets .card-footer button:focus{
+    padding: 0;
+    border: none !important;
+    border-radius: 10px;
+    margin: 10px !important;
+}
+.font-sixe3{
+    font-size: 18px !important;
+}
+ul.list-group.pt-5{
+    padding-top: .5rem !important;
+}
+.list-group-item.text-end{
+    padding-top: 0 !important;
+}
+.alert{
+    margin-top: 0;
+}
+.form-select1{
+    /* border: none !important; */
+}
+
+.segundario .col-lg-4, .segundario .col-4{
+    text-align: right !important;
+}
+.segundario .col-lg-4 input, .segundario .col-4 input{
+    max-width: 100px !important;
+    width: 100%;
+    float: right;
+}
+.segundario .col-8 p{
+    text-align: right;
+    margin-bottom: 0;
+}
+
+.signin-signup form{    
+    align-items:  normal;    
+    margin: auto;
+}
+.signin-signup form select{    
+    margin-bottom: 1rem;
+}
+.signin-signup form h2.title{
+    text-align: center;
+    color: #1a7b2e;
+}
+.container2:before{
+    background-image: linear-gradient(-45deg,#1a7b2e,#dab100);
+    background-image: none !important;
+    background: #1a7b2e !important;
+}
+
+.bg-white.mt-90px{
+    background: transparent !important;
+    border-left: none;
+}
+.bg-white.mt-90px svg{
+    display: none;
+}
+#sidebar{
+    background: white;
+    /*background-color: rgba(26, 123, 45, 0.3) !important;*/    
+    min-height: 250px;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    margin-top: 42px;
+}
+#sidebar li{
+    border-bottom: 1px solid #1a7b2e;
+}
+.card.tickets{
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    box-shadow: none;
+}
+
+.bg-gris-claro{
+    background-color: rgba(26, 123, 45, 0.3) !important;
+}
+.float-right{
+    float: right;
+}
+
+#terminoCondiciones h4,#terminoCondicionesCorp h4{
+    font-size: 1.2rem;
+    color: #1a7b2e;
+    font-weight: 600;
+}
+#terminoCondiciones h5,#terminoCondicionesCorp h5{
+    font-size: 1rem;    
+    color: #1a7b2e;
+}
+#terminoCondiciones p,#terminoCondicionesCorp p{
+    font-size: .9rem;
+}
+.bg-cielo{
+    background-color: #999999;
+    color: #ffffff;
+    font-size: 10px;
+}

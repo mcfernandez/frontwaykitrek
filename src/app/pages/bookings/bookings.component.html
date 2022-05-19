@@ -1,0 +1,1052 @@
+  <!-- Modal itinerary-->
+  <div class="modal fade" id="Itinerary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg mb-0">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-success" id="modal-basic-title">{{page_bookings[language_page].lnkItinerario}}</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th width="100">Day</th>
+                <th>Event</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let itinerary of listItinerario">
+                <td>{{itinerary.day}}</td>
+                <td>{{itinerary.name}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="card-link btn btn-secondary cursor text-white" aria-label="Close"
+            (click)="modalClose()">{{page_bookings[language_page].labelClose}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<!-- Modal Includes Services-->
+<div class="modal fade" id="SIncludes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg mb-0">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title text-success" id="modal-basic-title">{{page_bookings[language_page].lnkSincluido}}</h4>
+    </div>
+    <div class="modal-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="50">Nro</th>
+            <th>Items</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sincludes of listServicioIncluido; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{sincludes.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="card-link btn btn-secondary cursor text-white" aria-label="Close"
+        (click)="modalClose()">{{page_bookings[language_page].labelClose}}</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Modal Includes Not Services-->
+<div class="modal fade" id="SNIncludes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg mb-0">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title text-success" id="modal-basic-title">{{page_bookings[language_page].lnkSnoincluido}}</h4>
+    </div>
+    <div class="modal-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="50">Nro</th>
+            <th>Items</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let snoincludes of listServicioNoIncluido; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{snoincludes.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="card-link btn btn-secondary cursor text-white" aria-label="Close"
+        (click)="modalClose()">{{page_bookings[language_page].labelClose}}</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- Modal terminos y condiciones-->
+  <div class="modal fade" id="terminoCondiciones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg mb-0">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">{{page_bookings[language_page].label_tituloterminoNuevo}}</h4>
+        </div>
+        <div class="modal-body">
+          <!-- <p class="text-justify h4">{{page_detail[language_page].textoterminoNuevo}}</p> -->
+          <p>Thank you for choosing Wayki Trek, we ask you to read the following terms and
+            conditions of the trip to establish the guidelines that we work within. Once we have
+            received your request and deposit we will sign a contract, under the following
+            conditions.</p>
+          <h5>Bookings - Confirmations:</h5>
+          <p>Wayki Trek requires the following information to proceed with your reservation and
+            confirmation of your vacation. Please bear in mind that this information is strictly
+            confidential; Wayki Trek will not make it public, except in cases where this information
+            is necessary to safeguard your personal security and health (such as allergies,
+            medications, medical treatments, dietary restrictions, etc)</p>
+          <h5>Necessary Information:</h5>
+          <p>
+            •	Full Name (as it appears in your passport)<br>
+            • Nationality<br>
+            • Passport Number<br>
+            • Age<br>
+            • Occupation<br>
+            • Dietary restrictions (alergies, vegetarians, special diets, restrictions)<br>
+            • Medicinal restrictions (please specify is you have a current medication<br>
+            • or actual surgeries)<br>
+            • Allergies<br>
+            • Address, email, home phone number and emergency contact number<br>
+            We will send a form to be completed with the above details.
+          </p>
+          <h5>Payment and Deposits:</h5>
+          <p>
+            •	After making your reservation, Wayki Trek will send you a reply with a confirmation
+            of your trip, which guarantees that the services will be provided as requested.
+            We ask for an initial deposit of 50% of your trek price, before sending the confirmation.
+            This deposit is non-refundable if you then cancel your trip. <strong>The balance must be
+            paid at your briefing time.</strong></p>
+          <h5>Payment Methods:</h5>
+          <p>
+            •	You will be able to make the total or partial payment of your tour or package in our
+            payment gateway within the reservation system, with complete security and you will
+            receive a confirmation email.</p>
+           <h5>Cancellations Policy:</h5>
+          <p>Wayki Trek reserves the right to cancel any trip in the following cases:</p>
+          <p>
+            • If the client does not pay the full balance of their trip at the time of the briefing.
+            In this case there is no refund of the deposit paid.<br>
+            • Events beyond our control that make the operation of our tours impossible
+            (strikes, protests, flight cancellations, weather conditions, overbooking by
+            hotels and airlines). In this situation, we will suggest possible solutions and try
+            to operate the planned program. Additional costs incurred in this situation will
+            not be covered by Wayki Trek.<br>
+            • If you cancel your trip, you must notify us in writing, bearing in mind that the
+            deposit required at the time of confirmation is non-refundable and that you will
+            be required to pay the amount due according to the date you cancel your
+            program. The cancellation must be sent in writing explaining the reason for the
+            cancellation.<br>
+            • Due to the strict regulations established by Machu Picchu Picchu Park, once the
+            reservation is made, the space and permit purchased cannot be cancelled. It is
+            also impossible to transfer the permit to another person with a different name,
+            the date of your permit cannot be modified either. Therefore, if you are unable
+            to arrive on the scheduled date, no refunds can be made.<br>
+            • Permits are non-refundable and WAYKI TREK will purchase permits as soon as
+            booking confirmation is sent.</p>
+            <h5>Cancelling Policy Covid-19:</h5>
+            <p>Special terms and conditions: In the event that the COVID 19 pandemic situation
+            continues throughout the world, Wayki Trek will give you the option to reschedule
+            your trip or have a credit note for the future or return in coordination with the
+            regulatory institutions of tourist attractions.</p>
+            <p>Consider:</p>
+            <p>
+              • If you cancel the reservation between 30 and 11 days prior to the start of your trip; you will be required to pay 50% of the total cost.<br>
+              • If you cancel your reservation between 10 and 4 days before the start of your trip; you will be asked to pay 80% of the total cost.<br>
+              • If you cancel your reservation between 1 and 3 days before the start of your trip; you will be asked to pay 100% of the total cost.</p>
+
+            <p>In the event that you decide to withdraw from the trek once it has started, you will be
+              responsible for all additional charges such as: food and transportation that may occur
+              due to the modification of your itinerary. However, you may rejoin the group for the
+              visit to the citadel of Machu Picchu and use the same services thereafter.
+              In the event that you decide to cancel the trip due to a health or personal problem;
+              the previous cancellation policies will apply as the company had already incurred
+              administrative and logistical costs for your trek.</p>
+            <p>In case you are going to update your passport, make sure to take a photo of your
+              previous passport in order to update your passport number on your permits. It is
+              mandatory to show a photo of your old and new passport to the Ministry of Culture.
+              Also, we cannot change your last name on any of your permits or related entries.
+              In all of the above cases, we will need to repurchase your permits, so you will need
+              to pay a fee of $115 USD in order to repurchase your permits or related entries, as
+              this is a requirement of the Ministry of Culture.</p>
+            <h5>Services included:</h5>
+            <p>Wayki Trek includes the services detailed in each of its programs and is committed to
+              deliver them in full.<br>
+            •	If your trip includes accommodation, breakfast is included (varies according to
+            hotel standard). Accommodation prices do not include the 18% tax applicable
+            to Peruvian residents. You must show your passport and your original
+            immigration card (given to you when you enter the country) when checking
+            into your hotel, or the hotel may add the tax to your bill. We also ask our guests
+            (non-residents of Peru) to provide us with copies of their Passports and 
+            Immigration Cards to complete the 18% tax exemption, which is applicable to
+            Peruvian residents.</p>
+            <h5>Services not included:</h5>
+          <p>
+            •	Airport tax (domestic and international)<br>
+            • Domestic and international airline tickets<br>
+            • Excess baggage fees<br>
+            • Unplanned visits and activities<br>
+            • Alcoholic beverages, bottled water, rehydrating beverages<br>
+            • Food not mentioned in the program<br>
+            • Lodging not mentioned in the program<br>
+            • Gratuities (optional) for staff<br>
+            • Laundry service<br>
+            • Travel insurance<br>
+            • Additional expenses incurred for reasons not related to Wayki Trek operations.</p>
+            <h5>Responsibilities:</h5>
+          <p>Wayki Trek operates the treks directly, with equipment and trained staff to ensure
+            their successful completion. We also subcontract accommodation, restaurants, airlines
+            and other third party services, which have been pre-approved as meeting the
+            standards Wayki Trek intends to provide to our clients. However, these services
+            Providers are independent and Wayki Trek has no direct control over them.
+            Wayki Trek is not responsible for problems caused by these suppliers, such as loss of
+            luggage, delays, damages, etc., but may intervene to help customers.</p>
+          <p>
+            •The payment of the reservation of our program implies acceptance of the terms
+            and conditions detailed and covers our services and all participants in them.</p>
+          <p>Wayki Trek is committed to follow the principles of ecotourism in our operations, and
+            request the understanding and cooperation of hikers, especially in not polluting the
+            waters and the proper disposal of non-biodegradable waste. We must also respect the
+            customs and traditions of the local population.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="card-link btn btn-secondary cursor text-white" aria-label="Close"
+            (click)="modalClose()">{{page_bookings[language_page].labelClose}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- contenido -->
+  <div class="container-fluid">
+  <div class=" row justify-content-md-center bg-white">
+    <div class=" col col-lg-10 col-md-12 col-sm-12">
+      <nav class="navbar navbar-light bg-light">
+          <a class="navbar-brand" href="#">
+            <img src="https://www.waykitrek.net/wp-content/themes/wayki/assets/img/logo.png" alt="Logo"
+              class="d-inline-block align-top logo">
+          </a>
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a href="#" class="nav-link " [hidden]="paso==3">
+                <i class="fas fa-user"></i>
+                {{page_bookings[language_page].login}}
+              </a>
+              <a href="#" class="nav-link " *ngIf="paso==3">
+                <i class="fas fa-user"></i>
+                {{datosUsuario.name}}
+                {{datosUsuario.lastName}}
+              </a>
+            </li>
+            <li class="nav-item">
+                |
+            </li>
+            <li class="nav-item">
+              <a (click)="irsignUp()" class="nav-link" [hidden]="paso==3">
+                <i class="fas fa-user-plus"></i>
+                {{page_bookings[language_page].signUp}}
+              </a>
+              <a href="#" class="nav-link" [hidden]="paso!=3">
+                <i class="fas fa-sign-out-alt"></i>
+                {{page_bookings[language_page].cerrar_sesion}}
+              </a>
+            </li>
+            <!-- <li class="nav-item">
+              <div class="btn-group btn-group-lang cursor">
+                <a class="btn" (click)="selecionarIdioma('en')"
+                  [ngClass]="{'btn-outline-green':language_page === 0}">EN</a>
+                <a class="btn" (click)="selecionarIdioma('es')"
+                  [ngClass]="{'btn-outline-green':language_page === 1}">ES</a>
+              </div>
+            </li> -->
+          </ul>
+      </nav>
+    </div>
+  </div>
+
+
+  <div id="principal" class="align-items-stretch" *ngIf="jsonTour">
+    <div class="row justify-content-md-center">
+      <div class="col col-md-10 col-sm-12">
+        <div class="row">
+          <div class=" col-lg-12 text-lg-end pt-1 mb-3">
+            <ul class="nav justify-content-end">
+              <!-- <li class="nav-item" *ngFor="let link of jsonTour.links;">
+                <a href="{{link.value}} " class="nav-link" target="_blank">
+                  {{link.label}}
+                </a>
+              </li> -->        
+              <li *ngIf="listItinerario!=null" class="nav-item">
+                <a (click)="abrir_modal('Itinerary')" class="nav-link">
+                  {{page_bookings[language_page].lnkItinerario}}
+                </a>
+              </li>
+              <li *ngIf="listServicioIncluido!=null" class="nav-item">
+                <a (click)="abrir_modal('SIncludes')" class="nav-link">
+                  {{page_bookings[language_page].lnkSincluido}}
+                </a>
+              </li>
+              <li *ngIf="listServicioNoIncluido!=null" class="nav-item">
+                <a (click)="abrir_modal('SNIncludes')" class="nav-link">
+                  {{page_bookings[language_page].lnkSnoincluido}}
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="https://www.waykitrek.net/" target="_blank"
+              class="nav-link btn-outline-primary">{{page_bookings[language_page].seeMore}}</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-12 p-0">
+                <h3 class="size-2em card-title text-success font-weight-900">{{jsonTour.name}}</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <select class="form-select1 select_principal" size="1"
+            (change)="changeChangeRelatedTour($event.target.value);$event.target.value=0" name="relatedTour"
+            id="relatedTour" ng-focus="jsonTour">
+            <option selected value="0">{{page_bookings[language_page].relatedTour}}</option>
+            <option value="{{relatedTour.value}}" *ngFor="let relatedTour of jsonTour.relatedTours;">
+              {{relatedTour.label}}</option>
+          </select>     
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-lg-8" *ngIf="paso==1">
+            <div class="row">
+              <div class="col-lg-12 segundario">
+                <!-- <div class="row mt-3">
+                  <div class="col-lg-6 m-0 p-0">
+                    <div class="etiqueta">
+                      <h6>$50.000 <small>x persona</small> </h6>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div>
+
+                    </div>
+                  </div>
+                </div> -->
+                <section>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <p class="titulo2 mt-3">
+                        {{page_bookings[language_page].date_label}} <i class="fas fa-calendar-day"></i>
+                      </p>
+                      <hr>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-lg-6">
+                      <ngb-datepicker #dp [(ngModel)]="dia_selecionado" (ngModelChange)="selecionar_dia()"
+                        (navigate)="date = $event.next" [minDate]="{year: Hoy_anno, month: Hoy_mes, day: Hoy_dia}">
+                      </ngb-datepicker>
+                      <p class="advertencia mt-3 ml-3 ">
+                        <i class="fas fa-info-circle font-sixe3"></i> {{page_bookings[language_page].term_date}}
+                      </p>
+
+                    </div>
+                    <div class="col-lg-6">
+                      <p class="titulo2">
+                        {{page_bookings[language_page].types_label}}
+                      </p>
+                      <!-- <div class="form-check" *ngFor="let type of jsonTour.types; let indiceTypes=index">
+                        <input [(ngModel)]="arrayType[indiceTypes]" class="form-check-input" type="radio"
+                          (change)="changeTypes(indiceTypes)" name="typeTours" id="{{type.label}}{{type.value}}"
+                          value="{{type.value}}">
+                        <label class="form-check-label" for="{{type.label}}{{type.value}}">
+                          {{type.label}} {{arrayType[indiceTypes]}}
+                        </label>
+                      </div> -->
+                      <div *ngFor="let type of jsonTour.types;let indiceTypes=index">
+                        <label for="types_input{{type.label}}">
+                          <input id="types_input{{type.label}}" class="form-check-input" [value]='type.value'
+                            type="radio" (change)="changeTypes(indiceTypes)" name="types_name"
+                            [(ngModel)]="radioSelectedType">
+                          {{type.label}}
+                        </label>
+                      </div>
+                      <p class="titulo2 mt-6">
+                        {{page_bookings[language_page].category_label}}
+                      </p>
+                      <!-- <div class="form-check" *ngFor="let categorie of jsonTour.categories;let indiceCategorie=index">
+                        <input [(ngModel)]="CategoriesSelecionado.value" (change)="changeCategorie(indiceCategorie)"
+                          class="form-check-input" type="radio" name="cateogiraTours" value="{{categorie.value}}"
+                          id="{{categorie.label}}{{categorie.value}}">
+                        <label class="form-check-label" for="{{categorie.label}}{{categorie.value}}">
+                          {{categorie.label}}
+                        </label>
+                      </div> -->
+                      <div *ngFor="let categories of jsonTour.categories;let indiceCategorie=index ">
+                        <label for="categoriesanswer_{{categories.label}}">
+                          <input id="categoriesanswer_{{categories.label}}" class="form-check-input"
+                            [value]='categories.value' type="radio" name="categories_name"
+                            [(ngModel)]="radioSelectedCategories" (change)="changeCategorie(indiceCategorie)">
+                          {{categories.label}}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <p class="titulo">
+                        {{page_bookings[language_page].titulo_pasajero}} <i class="fas fa-user-friends"></i>
+                      </p>
+                      <hr>
+                    </div>
+                  </div>
+                  <div *ngFor="let customerType of jsonTour.customerTypes;let indiceCustomerType=index">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <p class="titulo2">
+                          {{customerType.label}}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="row pb-3">
+                      <div class="col-lg-8">
+                        <div class="row">
+                          <ul class="list-group list-group-flush descripcion_max">
+                            <li class="list-group-item pt-0 pb-0"
+                              *ngFor="let description of descripcion_pasajeros[language_page][customerType.value]">
+                              <i class="fa fa-caret-right" aria-hidden="true"></i>
+                              {{description}}
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 ">
+                        <div class="row">
+                          <div class="col">
+                            <input [(ngModel)]="arrayCustomerType[indiceCustomerType]"
+                              (change)="changeCustomerType(indiceCustomerType)" type="number"
+                              (keyup)="validarNumero(3,indiceCustomerType,0)" autocomplete="off" min="0"
+                              name="NAME{{customerType.value}}" placeholder="0" id="ID{{customerType.value}}">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row" [hidden]="indiceCustomerType==(jsonTour.customerTypes.length-1)">
+                      <div class="col-lg-12">
+                        <hr class="bg-gris">
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+
+
+                <section *ngIf="jsonTour.hotel!=null">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <p class="titulo">
+                        Hotel <i class="fas fa-hotel"></i>
+                      </p>
+                      <hr>
+                    </div>
+                  </div>
+
+                  <div class="row align-items-end">
+                    <div class="col-lg-4">
+                      <label for="Categoria"> {{page_bookings[language_page].categoriahotel_label}} </label>
+                      <select [(ngModel)]="tipoHotel" class="form-select1 " size="1" aria-label="Categoria del Hotel">
+                        <option *ngFor="let room of jsonTour.hotel.types; let indexRooms=index" value="{{room.value}}">
+                          {{room.label}}</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-4 pt-2">
+                      <label for="tipo">{{page_bookings[language_page].typeHotel_label}}</label>
+                      <select [(ngModel)]="categoriaHotel" class="form-select1 " size="1"
+                        aria-label="Tipo de habitacion">
+                        <option *ngFor="let type of jsonTour.hotel.rooms; let indextype=index " value="{{type.value}}">
+                          {{type.label}}</option>
+                      </select>
+                    </div>
+
+
+                    <div class="col-lg-2 pt-2">
+                      <label for="habitacionHotel">{{page_bookings[language_page].cantiHotel_label}}</label>
+                      <input [(ngModel)]="habitacionHotel" type="number" (keyup)="validarNumero(1,'habitacionHotel',0)"
+                        class="input-group" name="habitacionHotel" id="habitacionHotel" autocomplete="off"
+                        placeholder="0">
+                    </div>
+                    <div class="col-lg-2 pt-2">
+                      <button class="btn primary btn-success cursor" (click)="saveHotel()"><i class="fa fa-plus"
+                          aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <ul class="list-group list-group-flush descripcion">
+                      <li class="list-group-item pt-0 pb-0"
+                        *ngFor="let descriptionHotel of page_bookings[language_page].despcriptionHotel">
+                        <i class="fa fa-caret-right" aria-hidden="true"></i>
+                        {{descriptionHotel}}
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="row">
+
+                    <div class="row pb-1 pt-3" *ngIf="hoteles_selecionados.length>0">
+                      <div class="col-lg-12">
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>
+                                  {{page_bookings[language_page].categoriahotel_label}}
+                                </th>
+                                <th>
+                                  {{page_bookings[language_page].typeHotel_label}}
+                                </th>
+                                <th>
+                                  {{page_bookings[language_page].cantiHotel_label}}
+                                </th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let hotel_s of hoteles_selecionados; let indexHotel_s=index">
+                                <td>
+                                  {{hotel_s.tipo.label}}
+                                </td>
+                                <td>
+                                  {{hotel_s.categoria.label}}
+                                </td>
+                                <td>
+                                  {{hotel_s.cantidad}}
+                                </td>
+                                <td class="text-danger cursor" (click)="deleteHotel(indexHotel_s)">
+                                  <i class="fas fa-trash-alt">
+                                  </i>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <p class="titulo">
+                        {{page_bookings[language_page].titulo_serviciosAdicionale}} <i
+                          class="fas fa-concierge-bell"></i>
+                      </p>
+                      <hr>
+                    </div>
+                  </div>
+                  <div
+                    *ngFor="let additionalServices of jsonTour.additionalServices; let indiceAdditionalServices=index">
+
+
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <p class="titulo2 lowercase">
+                          {{additionalServices.name}}
+                        </p>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="row">
+                          <ul class="list-group list-group-flush descripcion_max">
+                            <li class="list-group-item pt-0 pb-0">
+
+                              {{additionalServices.description}}
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 ">
+                        <div class="row pb-3"
+                          *ngFor="let ASprices of additionalServices.prices; let indiceAdditionalServicesPrecio=index">
+                          <div class="col-8 align-self-center">
+                            <p class="">
+                              {{additionalServices.prices>1?ASprices.label:''}} ${{ASprices.value}}
+                            </p>
+                          </div>
+                          <!-- <div class="col-8">
+                            <div class="form-check">
+                              <input
+                                (change)="changeAdditionalServices(indiceAdditionalServices,indiceAdditionalServicesPrecio)"
+                                [(ngModel)]="ASprices.model" class="form-check-input cursor" type="checkbox"
+                                id="{{ASprices.label}}{{ASprices.id}}" name="{{additionalServices.name}}">
+                              <label class="form-check-label label-checkbox" for="{{ASprices.label}}{{ASprices.id}}">
+                                {{ASprices.label}} ${{ASprices.value}}
+                              </label>
+                            </div>
+                          </div> -->
+                          <div class="col-4">
+                            <input type="number" autocomplete="off"
+                              (keyup)="validarNumero(2,indiceAdditionalServices,indiceAdditionalServicesPrecio)"
+                              (change)="changeCantAdditionalServices(indiceAdditionalServices,indiceAdditionalServicesPrecio)"
+                              [(ngModel)]="ASprices.cantidad" placeholder="0" class="input-group servic-espec "
+                              name="input{{ASprices.label}}" id="input{{ASprices.label}}" min="0">
+                          </div>
+                        </div>
+
+                      </div>
+                      <!-- <div class="col-lg-2 p-0">
+                        <input type="text" autocomplete="off" (change)="changeCantAdditionalServices(indiceAdditionalServices)"
+                          [(ngModel)]="additionalServices.cantidad" [disabled]="additionalServices.habilitar_input"
+                          class="input-group servic-espec" name="input{{additionalServices.name}}"
+                          id="input{{additionalServices.name}}">
+                      </div> -->
+                      <div class="col-lg-12"
+                        [hidden]="indiceAdditionalServices==(jsonTour.additionalServices.length-1)">
+                        <hr class="bg-gris mt-2">
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <div class="row">
+                  <div class="pt-3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8" *ngIf="paso==2">
+            <div class="row">
+              <div class="col-lg-12 segundario tickets">
+                <section>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <p class="titulo2 mt-3">
+                        {{page_bookings[language_page].titulos_contacto_label}} <i class="fas fa-user"></i>
+                      </p>
+                      <hr>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <h6>
+                        {{page_bookings[language_page].cuentaConUsuario}}
+                      </h6>
+                    </div>
+                    <div class="col-lg-1 pr-0 w-50px"><label class="form-check-label"
+                        for="flexSwitchCheckDefault">{{page_bookings[language_page].cuentaConUsuario_not}}</label></div>
+                    <div class="col-lg-1  w-45px pl-0">
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" [(ngModel)]="nuevo_usuario" type="checkbox"
+                          id="flexSwitchCheckDefault">
+                      </div>
+                    </div>
+                    <div class="col-lg-1 pl-0"><label class="form-check-label"
+                        for="flexSwitchCheckDefault">{{page_bookings[language_page].cuentaConUsuario_si}}</label></div>
+                  </div>
+                  <div class="row" [hidden]="nuevo_usuario==false">
+                    <div class="col-6">
+                      <label for="Usuario"
+                        class=" col-form-label">{{page_bookings[language_page].label_usuarioExistente}}</label>
+                      <input class="w100" [(ngModel)]="usuario" type="text" autocomplete="off" name="usuario"
+                        maxlength="50" id="Usuario" />
+                    </div>
+                    <div class="col-6">
+                      <label for="password"
+                        class=" col-form-label">{{page_bookings[language_page].label_contrasenaExistente}}</label>
+                      <input class="w100" [(ngModel)]="password" type="password" name="password" id="password"
+                        maxlength="50" />
+                    </div>
+                    <!-- <div class="col-4">
+                      <button class="btn primary btn-success">{{page_bookings[language_page].label_acceder}}</button>
+                    </div> -->
+                  </div>
+                  <div [hidden]="nuevo_usuario==true">
+                    <div class="row pt-2">
+                      <div class="col-6">
+                        <label for="label_nombreNuevo"
+                          class=" col-form-label">{{page_bookings[language_page].label_nombreNuevo}}</label>
+                        <input class="w100" [(ngModel)]="nombreNuevo" type="text" autocomplete="off" name="nombreNuevo"
+                          id="nombreNuevo" maxlength="50" />
+                      </div>
+                      <div class="col-6">
+                        <label for="apellidoNuevo"
+                          class=" col-form-label">{{page_bookings[language_page].label_apellidoNuevo}}</label>
+                        <input class="w100" [(ngModel)]="apellidoNuevo" type="text" autocomplete="off"
+                          name="apellidoNuevo" id="apellidoNuevo" maxlength="50" />
+                      </div>
+                    </div>
+                    <div class="row pt-3">
+                      <div class="col-6">
+                        <label for="telefono"
+                          class=" col-form-label">{{page_bookings[language_page].label_telefonoNuevo}}</label>
+                        <input class="w100" [(ngModel)]="telefono" type="text" autocomplete="off" name="telfono"
+                          id="telefono" maxlength="20" />
+                      </div>
+                      <div class="col-6">
+                        <label for="fechaNacimiento"
+                          class=" col-form-label">{{page_bookings[language_page].label_fechaNacimientoNuevo}}</label>
+                        <input class="w100" [(ngModel)]="fechaNacimeinto" type="date" name="fechaNacimiento"
+                          id="fechaNacimeinto" min="1900-01-01" max="{{fecha_max}}" />
+                      </div>
+                    </div>
+                    <div class="row pt-3">
+                      <div class="col-6">
+                        <label for="emailNuevo"
+                          class=" col-form-label">{{page_bookings[language_page].label_emailNuevo}}</label>
+                        <input class="w100" [(ngModel)]="emailNuevo" type="email" name="emailNuevo" placeholder=""
+                          id="emailNuevo" maxlength="50" />
+                      </div>
+                      <div class="col-6">
+                        <label for="contrasenaNuevo"
+                          class=" col-form-label">{{page_bookings[language_page].label_contrasenaNuevo}}</label>
+                        <input class="w100" [(ngModel)]="contrasenaNuevo" type="password" name="contrasenaNuevo"
+                          id="label_contrasenaNuevo" maxlength="50" />
+                      </div>
+                    </div>
+                    <div class="row pt-3">
+                      <div class="col-6">
+                        <label for="emailNuevo"
+                          class=" col-form-label">{{page_bookings[language_page].label_paisNuevo}}</label>
+                        <select class="form-select1" size="1" [(ngModel)]="pais">
+                          <option value="{{relatedTour.value}}" *ngFor="let relatedTour of paises">
+                            {{relatedTour.label}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row pt-6">
+                    <div class="col-6">
+                      <button (click)="atras()"
+                        class="card-link btn btn-secondary  cursor text-white">{{page_bookings[language_page].atras_label}}</button>
+                    </div>
+                    <div class="col-6 text-end ">
+                      <button (click)="reservar()"
+                        class="card-link btn  btn-success cursor text-white">{{nuevo_usuario!=true?page_bookings[language_page].titulo_btnregistrar:page_bookings[language_page].titulo_btnacceder}}</button>
+                    </div>
+                  </div>
+
+
+                </section>
+                <div class="row">
+                  <div class="pt-3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8" *ngIf="paso==3">
+            <div class="row">
+              <div class="col-lg-12 segundario">
+                <section>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="alert alert-dark bg-gris-claro" role="alert">
+                        <h4>{{datosUsuario.lastName}}</h4>
+                        {{datosUsuario.email}}
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <p class="titulo2 mt-3">
+                        {{page_bookings[language_page].titulopasajero}} <i class="fas fa-user"></i>
+                      </p>
+                      <hr>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-check">
+                        <input [(ngModel)]="pasajero" class="form-check-input" [disabled]="mostrar_pago==false"
+                          type="checkbox" name="label_pasajero" id="label_pasajero">
+                        <label class="form-check-label" for="label_pasajero">
+                          {{page_bookings[language_page].labelpasajero}}
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-check">
+                        <input [(ngModel)]="terminoNuevo" class="form-check-input" type="checkbox"
+                          name="label_terminoNuevo" id="label_terminoNuevo">
+                        <label class="form-check-label" for="label_terminoNuevo"><a class="terminos" (click)="abrir_modal('terminoCondiciones')">
+                          {{page_bookings[language_page].label_terminoNuevo}}
+                        </a>
+                        </label>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <p class="titulo2 mt-3">
+                        {{page_bookings[language_page].titulo_pago}} <i class="fas fa-credit-card"></i>
+                      </p>
+                      <hr>
+                    </div>
+                  </div>
+                  <div class="row mb-2">
+                    <div class="col-lg-6">
+                      <input [(ngModel)]="NamemontoPagol_model" (change)="AsignarPago('T')" class="form-check-input"
+                        type="radio" name="NamemontoPago" id="montoPagoTotal" value="T"
+                        [disabled]="mostrar_pago==false">
+                      <label class="form-check-label" for="montoPagoTotal" class="col-6 ml-3">
+                        {{page_bookings[language_page].label_total}}
+                        (${{(total_AdditionalServices+total_hotel+total_persona) | number}})
+                      </label>
+                    </div>
+                    <div class="col-lg-6">
+                      <input [(ngModel)]="NamemontoPagol_model" (change)="AsignarPago('P')"
+                        class="form-check-input col-6" type="radio" name="NamemontoPago" id="montoPagoParcial" value="P"
+                        [disabled]="mostrar_pago==false">
+                      <label class="form-check-label" for="montoPagoParcial" class="col-6 ml-3">
+                        {{page_bookings[language_page].label_parcial}} (${{((total_hotel+total_persona)/2)| number}})
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 pb-5 text-end pt-5">
+                      <button (click)="savetour()"
+                        class="card-link btn cursor btn-success text-white">{{page_bookings[language_page].reserva_label}}</button>
+                    </div>
+                  </div>
+                  <div class="row pt-6 mb-3" *ngIf="mostrar_pago!=true">
+                    <div class="col-12">
+
+                      
+                      <form name="f1" id="f1" action="#" method="post" class="alignet-form-vpos2">
+                        <input type="hidden" id="acquirerId" name="acquirerId" value="29" />
+                        <input type="hidden" id="idCommerce" name="idCommerce" value="16210" />
+                        <input type="hidden" id="purchaseAmount" name="purchaseAmount" value="{{montoPagar*100}}" />
+                        <!-- valor a pagar  H -->
+                        <input type="hidden" id="purchaseCurrencyCode" name="purchaseCurrencyCode" value="840" />
+                        <!-- tipo de moneda q  -->
+                        <input type="hidden" id="purchaseOperationNumber" name="purchaseOperationNumber" value="{{datos_save.transactionId}}" />
+                        <!-- dato del save transactionId  -->
+                        <input type="hidden" name="language" value="SP" />
+                        <input type="hidden" name="shippingFirstName" value="{{datosUsuario.lastName}}" />
+                        <!-- datos de usuario -->
+                        <input type="hidden" name="shippingLastName" value="{{datosUsuario.name}}" />
+                        <input type="hidden" name="shippingEmail" value="{{datosUsuario.email}}" />
+                        <input type="hidden" name="shippingAddress" value="Direccion ABC" />
+                        <input type="hidden" name="shippingZIP" value="Zip 123" />
+                        <input type="hidden" name="shippingCity" value="City ABC" />
+                        <input type="hidden" name="shippingState" value="STATE ABC" />
+                        <input type="hidden" name="shippingCountry" value="PE" />
+
+                        <input type="hidden" name="userCommerce" value="" />
+                        <input type="hidden" name="userCodePayme" value="" />
+                        <input type="hidden" name="descriptionProducts" value="{{jsonTour.name}}" />
+                        <!-- nombre del tour json.name -->
+                        <input type="hidden" name="programmingLanguage" value="C#" />
+                        <input type="hidden" name="purchaseVerification" value="{{datos_save.transactionKey}}" />
+                        <!-- dato del save transactionKey  -->
+                        <input type="hidden" name="reserved1" value="{{datos_save.bookingId}}" />
+                        <input type="hidden" name="reserved2" value="{{datosUsuario.token}}" />
+                        <input type="hidden" name="reserved3" value="Compra Inicial" />
+                        <input type="hidden" name="reserved4" value="{{datos_save.code}}" />
+                        <!-- dato del save bookingId -->
+                          <div class="col-12  pb-5 text-end ">
+                            <input id="prod" style="display: none;" class=" pagarMostrasPasarela" type="button"
+                              onclick="javascript:AlignetVPOS2.openModal('','1')" value="{{page_bookings[language_page].titulo_btnpago}}">
+                            <input id="dev" style="display: none;" class=" pagarMostrasPasarela" type="button"
+                              onclick="javascript:AlignetVPOS2.openModal('https://integracion.alignetsac.com/','1')"
+                              value="{{page_bookings[language_page].titulo_btnpago}}">
+                          </div>
+                      </form>
+
+
+<!-- 
+                      <form name="f1" id="f1" action="#" method="post" class="alignet-form-vpos2">
+                        <input type="hidden" id="acquirerId" name="acquirerId" value="144" />
+                        <input type="hidden" id="idCommerce" name="idCommerce" value="12561" />
+                        <input type="hidden" id="purchaseAmount" name="purchaseAmount" value="{{montoPagar*100}}" />
+                        <input type="hidden" id="purchaseCurrencyCode" name="purchaseCurrencyCode" value="604" />
+                        <input type="hidden" id="purchaseOperationNumber" name="purchaseOperationNumber" value="{{datos_save.transactionId}}" />
+                        
+                        <input type="hidden" name="language" value="SP" />
+                        <input type="hidden" name="shippingFirstName" value="{{datosUsuario.lastName}}" />
+                        
+                        <input type="hidden" name="shippingLastName" value="{{datosUsuario.name}}" />
+                        <input type="hidden" name="shippingEmail" value="{{datosUsuario.email}}" />
+                        <input type="hidden" name="shippingAddress" value="Direccion ABC" />
+                        <input type="hidden" name="shippingZIP" value="Zip 123" />
+                        <input type="hidden" name="shippingCity" value="City ABC" />
+                        <input type="hidden" name="shippingState" value="STATE ABC" />
+                        <input type="hidden" name="shippingCountry" value="PE" />
+
+                        <input type="hidden" name="userCommerce" value="" />
+                        <input type="hidden" name="userCodePayme" value="" />
+                        <input type="hidden" name="descriptionProducts" value="{{jsonTour.name}}" />
+                        
+                        <input type="hidden" name="programmingLanguage" value="C#" />
+                        <input type="hidden" name="purchaseVerification" value="{{datos_save.transactionKey}}" />
+                        
+                        <input type="hidden" name="reserved1" value="{{datos_save.bookingId}}" />
+                        
+
+                        <input type="hidden" name="reserved3" value="Compra Inicial" />
+                        <input type="hidden" name="reserved4" value="{{datos_save.code}}" />
+                         
+                          <div class="col-12  pb-5 text-end ">
+                            <input id="prod" style="display: none;" class=" pagarMostrasPasarela" type="button"
+                              onclick="javascript:AlignetVPOS2.openModal('','1')" value="{{page_bookings[language_page].titulo_btnpago}}">
+                            <input id="dev" style="display: none;" class=" pagarMostrasPasarela" type="button"
+                              onclick="javascript:AlignetVPOS2.openModal('https://integracion.alignetsac.com/','1')" value="{{page_bookings[language_page].titulo_btnpago}}">
+                          </div>
+                      </form> -->
+
+
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 ">
+            <div class="card tickets">
+              <div class="card-head border bg-main color-white">
+                <h5 class="card-title m-3 font-weight-600"> {{page_bookings[language_page].resumen_label}}</h5>
+              </div>
+
+              <div class="card-body p-0 mb-1 mt-5">
+                <ul class="list-group list-group-flush mb-3">
+                  <li class="list-group-item pt-0 pb-0"><strong>Tour:</strong> {{jsonTour.name}}</li>
+                  <li class="list-group-item pt-0 pb-0"><strong>{{page_bookings[language_page].DateLabel_label}}:</strong> {{dia_selecionado.day < 10 ? '0' + dia_selecionado.day: dia_selecionado.day}}/{{dia_selecionado.month< 10?'0'+dia_selecionado.month:dia_selecionado.month}}/{{dia_selecionado.year }}</li>
+                  <li class="list-group-item pt-0 pb-0" *ngIf="typeSelecionado">
+                  <strong> {{page_bookings[language_page].tipoTour_label}}:</strong>
+                    {{typeSelecionado.label}}</li>
+                  <li class="list-group-item pt-0 pb-0" *ngIf="CategoriesSelecionado">
+                  <strong>{{page_bookings[language_page].category_label}}:</strong>
+                    {{CategoriesSelecionado.label}}</li>
+                </ul>
+                <ul class="list-group list-group-flush pt-5" *ngIf="ArrayCustomerTypesSelecionado.length>0">
+                  <li class="list-group-item pt-0 pb-0 font-weight-600 border-oscuro">
+                    {{page_bookings[language_page].titulo_pasengers}}
+                  </li>
+                  <li class="list-group-item pt-0 pb-0"
+                    *ngFor="let CustomerTypesSelecionado of ArrayCustomerTypesSelecionado">                    
+                    <div class="row">
+                      <div class="col-8">
+                        {{CustomerTypesSelecionado.label}} ({{CustomerTypesSelecionado.cantidad}})
+                      </div>
+                      <div class="col-4 text-end">
+                        {{CustomerTypesSelecionado.precio | currency: 'USD' | lowercase }}
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item pt-4 pb-0 font-weight-900 color-main text-end text-end"
+                    [ngClass]="{'fa-2x text-center mt-6':(ArrayAdditionalServices.length===0)&&(hoteles_selecionados.length===0)}">
+                    {{page_bookings[language_page].total_label}} {{total_persona | currency: 'USD' | lowercase}}
+                  </li>
+                </ul>
+
+                <ul class="list-group list-group-flush pt-5" *ngIf="hoteles_selecionados.length>0">
+                  <li class="list-group-item pt-0 pb-0 font-weight-600 border-oscuro">
+                    Hotel
+                  </li>
+                  <li class="list-group-item pt-0 pb-0"
+                    *ngFor="let hotelSelecionado of hoteles_selecionados; let indiceMostrarHotele=index">
+                    <div class="row pt-3"
+                      [ngClass]="{'border-claro':indiceMostrarHotele != (hoteles_selecionados.length-1)}">
+                      <!-- <hr> -->
+                      <div class="col-12">
+                        <h6 class="etiqueta_color">Hotel <span class="badge bg-cielo"
+                            [ngClass]="{'bg-salmon':indiceMostrarHotele%2 === 0}">{{hotelSelecionado.tipo.label}}</span>
+                        </h6>
+                      </div>
+                      <div class="col-8">
+                        {{hotelSelecionado.categoria.label}} ({{hotelSelecionado.cantidad}})
+                      </div>
+                      <div class="col-4 text-end">
+                        {{hotelSelecionado.precio | currency: 'USD' | lowercase}}
+                      </div>
+                    </div>
+
+                  </li>
+                  <li class="list-group-item pt-4 pb-0 font-weight-900 color-main text-end">
+                    {{page_bookings[language_page].total_label}} {{(total_hotel) | currency: 'USD' |
+                    lowercase}}
+                  </li>
+                </ul>
+
+                <ul class="list-group list-group-flush pt-5" *ngIf="ArrayAdditionalServices.length>0">
+                  <li class="list-group-item pt-0 pb-0 font-weight-600 border-oscuro">
+                    {{page_bookings[language_page].titulo_serviciosAdicionale}}
+                  </li>
+                  <!-- <li>
+                   <div class="row pt-0 pb-0 mt-0 mb-0">
+                     <div class="col-12"><hr class="mt-0"></div>
+                   </div>
+                 </li> -->
+                  <li class="list-group-item pt-0 pb-0 "
+                    *ngFor="let AdditionalServicesSeleccionado of ArrayAdditionalServices">
+                    <div class="row">
+                      <!-- <hr> -->
+                      <div class="col-8">
+                        {{AdditionalServicesSeleccionado.label}} ({{AdditionalServicesSeleccionado.cantidad}})
+                      </div>
+                      <div class="col-4 text-end">
+                        {{AdditionalServicesSeleccionado.precio | currency: 'USD' | lowercase}}
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item pt-4 pb-0 font-weight-900 color-main text-end">
+                    {{page_bookings[language_page].total_label}} {{total_AdditionalServices | currency: 'USD' |
+                    lowercase}}
+                  </li>
+                </ul>
+
+                <ul class="list-group list-group-flush pt-5 mt-6"
+                  *ngIf="ArrayAdditionalServices.length>0 || hoteles_selecionados.length>0 ">
+                  <li class="list-group-item pt-0 pb-0 font-weight-900 color-main fa-2x text-center"
+                    *ngIf="jsonTour.hotel==null">
+                    {{page_bookings[language_page].total_label}} {{(total_AdditionalServices+total_persona) | currency:
+                    'USD' | lowercase}}
+                  </li>
+                  <li class="list-group-item pt-4 pb-0 font-weight-900 color-main fa-2x text-center"
+                    *ngIf="jsonTour.hotel!=null">
+                    {{page_bookings[language_page].total_label}} {{(total_AdditionalServices+total_hotel+total_persona)
+                    | currency: 'USD' | lowercase}}
+                  </li>
+
+                </ul>
+                <ul class="list-group list-group-flush" *ngIf="ArrayCustomerTypesSelecionado.length>0">
+                  <li class="list-group-item pt-0 pb-0  descripcion m-auto">
+                    <i class="fas fa-info-circle text-danger font-sixe3"></i>{{page_bookings[language_page].terminos_total}}
+
+                  </li>
+                </ul>
+              </div>
+              <div class="card-footer justify-content-end" *ngIf="paso==1">
+                <button (click)="cambiar_paso()"
+                  class="btn-success card-link m-auto p-4 text-uppercase text-white w-100 large">{{page_bookings[language_page].reserva_label}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>

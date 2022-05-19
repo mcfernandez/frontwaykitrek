@@ -1,0 +1,11 @@
+.btn-success {
+    color: #fff !important;
+    background-color: #1a7b2e;
+    border-color: #1a7b2e;
+    padding: .6rem .5rem;
+    display: block;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.1rem;
+    text-decoration: none;
+  }

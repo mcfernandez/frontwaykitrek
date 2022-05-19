@@ -1,0 +1,16 @@
+<nav id="sidebar">
+  <div class="p-4 pt-5">
+
+    <ul class="list-unstyled components mb-5">
+      <li class="nav-item" *ngFor="let menu of menus" routerLinkActive="active">
+        <a routerLinkActive="active" [attr.routerLink]="menu.opciones.length > 0 ? '' : menu.url" class="nav-link" href="#nav{{menu.id}}" 
+        *ngIf="menu.opciones.length > 0"><i class="{{menu.icono}}"></i><span class="nav-link-text">{{menu.titulo}}</span>
+        </a>        
+        <a class="nav-link" [routerLink]="menu.url"><i class="{{menu.icono}}"></i> {{menu.titulo}}</a>                 
+      </li>     
+    </ul>
+
+    <a class="btn-success" href="/#/main/tours/" *ngIf="datosUsuario.corporateClientId!=null"><i class="fas fa-th-list"></i> Booking</a>
+  </div>
+
+</nav>

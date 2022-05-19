@@ -1,0 +1,16 @@
+.card-text {
+  color: #1a7b2e
+}
+.bg-main {
+  color: white !important;
+  background: #1a7b2e;
+}
+
+#myTab .nav-item{
+  padding-bottom: 0;
+}
+.tab-pane{
+  border: 1px solid #dee2e6;
+  border-top: none;
+  padding: 20px;
+}
