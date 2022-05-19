@@ -2,7 +2,8 @@ html, body {
     background: #eeeeee !important;
 }  
 a{
-    color: #000000 !important
+    color: #000000 !important;
+    color: red !important;
 }
 li.active a, li:hover a{
 color: #1a7b2e !important;
